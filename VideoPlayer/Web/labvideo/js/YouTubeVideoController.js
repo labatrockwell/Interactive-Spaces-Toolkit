@@ -9,11 +9,24 @@ var YouTubeVideoController = function(model, view){
 YouTubeVideoController.prototype = LAB.inherit(BaseVideoModel.prototype);
 YouTubeVideoController.prototype.constructor = YouTubeVideoController;
 
-YouTubeVideoController.prototype.load = function(sGlobalObjPath, videoID){
+YouTubeVideoController.prototype.load = function(videoID){
 	this.videoID = videoID;
-	LAB.require("http://gdata.youtube.com/feeds/api/videos/"+videoID+"?alt=json-in-script&callback="+sGlobalObjPath+".YTDataCallback&format=5");
+	getYouTubeDataAjax("http://gdata.youtube.com/feeds/api/videos/"+videoID+"?alt=json", this.YTDataCallback.bind(this));
+	//LAB.require("http://gdata.youtube.com/feeds/api/videos/"+videoID+"?alt=json-in-script&callback="+sGlobalObjPath+".YTDataCallback&format=5");
 //url for reference
 //http://gdata.youtube.com/feeds/api/videos/MO_819DXjuc?alt=json-in-script&callback=youtubeFeedCallback&format=5
+};
+
+/** 
+ * Load handlebars templates from external files
+ */
+getYouTubeDataAjax = function(path, callback) {
+    $.ajax({
+        url: path,
+        dataType: "json",
+        cache: false,
+        success: callback
+    });         
 };
 
 YouTubeVideoController.prototype.YTDataCallback = function(data){

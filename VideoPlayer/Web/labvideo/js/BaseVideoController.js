@@ -41,7 +41,12 @@ BaseVideoController.prototype.setLoopType = function( type ){};
 * @function
 * @param		{String} url
 */
-BaseVideoController.prototype.load = function( url ){}; 
+BaseVideoController.prototype.load = function( url ){
+	if (url){
+		this.model.setURL(url);
+	}
+	this.view.load(this.model.getURL());
+}; 
 
 BaseVideoController.prototype.unload = function(){
 	this.view.unload();
@@ -69,13 +74,6 @@ BaseVideoController.prototype.seek = function( where ){
 */
 BaseVideoController.prototype.setMetadata = function(){
 	//this.view.setMetadata();
-};
-/** 
-* @function
-* @param		{BaseVideoModel} model
-*/
-BaseVideoController.prototype.load = function(){
-	return this.view.load( this.model );
 };
 
 // Called by GUI
