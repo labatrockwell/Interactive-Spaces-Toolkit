@@ -12,8 +12,7 @@ YouTubeVideoController.prototype.constructor = YouTubeVideoController;
 YouTubeVideoController.prototype.load = function(videoID){
 	this.videoID = videoID;
 	getYouTubeDataAjax("http://gdata.youtube.com/feeds/api/videos/"+videoID+"?alt=json", this.YTDataCallback.bind(this));
-	//LAB.require("http://gdata.youtube.com/feeds/api/videos/"+videoID+"?alt=json-in-script&callback="+sGlobalObjPath+".YTDataCallback&format=5");
-//url for reference
+	//url for reference
 //http://gdata.youtube.com/feeds/api/videos/MO_819DXjuc?alt=json-in-script&callback=youtubeFeedCallback&format=5
 };
 
