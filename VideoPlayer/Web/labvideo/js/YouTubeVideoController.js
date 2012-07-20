@@ -35,3 +35,7 @@ YouTubeVideoController.prototype.YTDataCallback = function(data){
 	this.model.description = data.entry.content.$t;
 	this.view.load(this.model);
 };
+
+YouTubeVideoController.prototype.start = function(){
+	this.view.play();
+};

@@ -6,12 +6,14 @@
 		var globalController;
 		window.onload = function(){
 			var model = new BaseVideoModel();
-			//var view = new BaseVideoView();
-			var view = new LocalVideoView();
-			//globalController = new YouTubeVideoController(model, view);
-			globalController = new LocalVideoController(model, view);
-			//globalController.load("MO_819DXjuc");
-			globalController.load("../LocalVideoPlayer/videos/bikes.mp4");
+
+			var view = new RemoteVideoView();
+			globalController = new YouTubeVideoController(model, view);
+			globalController.load("MO_819DXjuc");
+			
+			//var view = new LocalVideoView();
+			// globalController = new LocalVideoController(model, view);
+			// globalController.load("../LocalVideoPlayer/videos/bikes.mp4");
 			setTimeout(playfunc, 2000);
 		};
 		playfunc = function(){
@@ -21,6 +23,10 @@
 	<script src="../LocalVideoPlayer/js/LocalVideoView.js"></script>
 	<script src="js/LocalVideoController.js"></script>
 	<script src="js/jquery-1.7.2.min.js"></script>
+
+		<script src="http://www.youtube.com/apiplayer?enablejsapi=1&version=3"></script>
+		<script src="http://www.youtube.com/iframe_api"></script>
+	
 </head>
 <body>
 </body>
