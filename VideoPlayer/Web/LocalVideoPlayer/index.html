@@ -1,5 +1,6 @@
 <html>
 <head>
+	<link type="text/css" rel="stylesheet" href="css/main.css">	
 	<script>
 		var path = document.location.pathname;
 		var dir = path.substr(0, path.lastIndexOf('/')+1);
@@ -26,6 +27,8 @@
 			function loadVideo(){
 				view.load(videos[which]);
 				view.start();
+
+				view.setDimensions(window.innerWidth, window.innerHeight);
 				which++;
 				if ( which >= videos.length ) which = 0;
 			}

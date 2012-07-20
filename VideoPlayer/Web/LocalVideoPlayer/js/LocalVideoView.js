@@ -4,7 +4,8 @@
 var LocalVideoView = function(){
 	BaseVideoView.call(this);
 
-	this.domElement = null;
+	this.domElement 	= null;
+	this.videoElement 	= null;
 }
 
 LocalVideoView.prototype = LAB.inherit( BaseVideoView.prototype );
@@ -15,27 +16,50 @@ LocalVideoView.prototype.constructor = LocalVideoView;
 * @param {DOMElement} parentElement
 */
 LocalVideoView.prototype.setup = function( parentElement ){
-	// initialize DOM object
-	this.domElement = document.createElement("video");
+	// initialize DOM objects
+	this.domElement   = document.createElement("div");
+	this.videoElement = document.createElement("video");
+	this.domElement.appendChild(this.videoElement);
 
+	// setup style props of dom element
+	this.domElement.style.position = "absolute";
+	this.domElement.style.overflow = "hidden";
+	this.domElement.style.backgroundColor = "black";
+	this.videoElement.style.position = "absolute";
+	this.videoElement.style["-webkit-transform-origin"] = "0 0";
+
+	// add event listeners
+
+	this.videoElement.addEventListener("loadeddata", function(){
+		this.setScaleMode( this.scaleMode );
+	}.bind(this));
+
+	// append to parent
 	if ( parentElement != undefined ){
 		parentElement.appendChild(this.domElement);
 	}
 }
 
 /** 
-* @returns {HTMLVideoElement} returns <video> DOMElement
+* @returns {HTMLDivElement} returns mask element
 */
 LocalVideoView.prototype.getDomElement = function(){
 	return this.domElement;
 };
 
 /** 
+* @returns {HTMLVideoElement} returns <video> videoElement
+*/
+LocalVideoView.prototype.getVideoElement = function(){
+	return this.videoElement;
+};
+
+/** 
 * @function
 */
 LocalVideoView.prototype.start = function(){
-	if ( this.domElement ){
-		this.domElement.play();		
+	if ( this.videoElement ){
+		this.videoElement.play();		
 	}
 };
 
@@ -44,8 +68,8 @@ LocalVideoView.prototype.start = function(){
 * @function
 */
 LocalVideoView.prototype.stop = function(){
-	if ( this.domElement ){
-		this.domElement.pause();	
+	if ( this.videoElement ){
+		this.videoElement.pause();	
 		this.seek(0);
 	}
 };
@@ -54,11 +78,11 @@ LocalVideoView.prototype.stop = function(){
 * @function
 */
 LocalVideoView.prototype.pause = function(){
-	if ( this.domElement ){
-		if ( this.domElement.paused ){
+	if ( this.videoElement ){
+		if ( this.videoElement.paused ){
 			this.start();
 		} else {
-			this.domElement.pause();	
+			this.videoElement.pause();	
 		}
 	}
 };
@@ -69,14 +93,14 @@ LocalVideoView.prototype.pause = function(){
 * @returns {Boolean} Success (or not)
 */
 LocalVideoView.prototype.load = function( url ){
-	if ( this.domElement ){
-		if ( this.domElement.src != "" ) this.unload();
-		this.domElement.src = url;
+	if ( this.videoElement ){
+		if ( this.videoElement.src != "" ) this.unload();
+		this.videoElement.src = url;
 		try {
-			this.domElement.load();	
+			this.videoElement.load();
 			return true;	
 		} catch(e){
-			console.warn(this.domElement.error.code);
+			console.warn(this.videoElement.error.code);
 			return false;
 		}
 	}
@@ -86,8 +110,8 @@ LocalVideoView.prototype.load = function( url ){
 * @function
 */
 LocalVideoView.prototype.unload = function(){
-	this.domElement.src = "";
-	this.domElement.load();	
+	this.videoElement.src = "";
+	this.videoElement.load();	
 	return true;
 }
 
@@ -96,16 +120,149 @@ LocalVideoView.prototype.unload = function(){
 * @param	{Float} where (0-1)
 */
 LocalVideoView.prototype.seek = function( where ){
-	if ( this.domElement ){
+	if ( this.videoElement ){
 		// NOTE: SHOULD DURATION BE FROM THE MODEL?
-		this.domElement.currentTime = this.domElement.duration * where;
+		this.videoElement.currentTime = this.videoElement.duration * where;
 	}
 };
+
+/** 
+* @function
+* @param	{Integer} width
+* @param	{Integer} height
+*/
+LocalVideoView.prototype.setDimensions = function( width, height ){
+	this.width = width;
+	this.height = height;
+
+	this.domElement.style.width = this.width + "px";
+	this.domElement.style.height = this.height + "px";	
+	
+	// reset scale stuff
+	this.setScaleMode( this.scaleMode );	
+};
+
+/** 
+* @function
+* @param	{ScaleMode} mode
+*/
+LocalVideoView.prototype.setScaleMode = function( mode ){
+	this.scaleMode = mode;
+
+	//if ( this.videoElement.videoWidth == 0 || this.videoElement.videoHeight == 0) return;
+
+	switch ( this.scaleMode){
+		case ScaleMode.SCALE_LETTERBOX:
+			this.videoElement.style["-webkit-transform"] = "scaleX(1) scaleY(1)";
+			if ( this.videoElement.videoWidth > this.width ){
+				if ( this.videoElement.videoWidth > this.videoElement.videoHeight ){
+					var scale = this.width / this.videoElement.videoWidth;
+					this.videoElement.width = this.width;
+					this.videoElement.height = this.videoElement.videoHeight * scale;
+					var pos   = ( this.height - this.videoElement.height ) / 2;
+					this.videoElement.style.left = "0px";
+					this.videoElement.style.top = pos + "px";
+				} else {				
+					var scale = this.height / this.videoElement.videoHeight;
+					this.videoElement.width = this.videoElement.videoWidth * scale ;
+					this.videoElement.height = this.height;
+					var pos   = ( this.width - this.videoElement.width ) / 2;
+					this.videoElement.style.left = pos + "px";
+					this.videoElement.style.top = "0px";
+				}
+			} else {			
+				if ( this.videoElement.videoWidth < this.videoElement.videoHeight ){
+					var scale = this.width / this.videoElement.videoWidth;
+					this.videoElement.width = this.width;
+					this.videoElement.height = this.videoElement.videoHeight * scale;
+					var pos   = ( this.height - this.videoElement.height) / 2;
+					this.videoElement.style.left = "0px";
+					this.videoElement.style.top = pos + "px";
+				} else {				
+					var scale = this.height / this.videoElement.videoHeight;
+					this.videoElement.width = this.videoElement.videoWidth * scale ;
+					this.videoElement.height = this.height;
+					var pos   = ( this.width - this.videoElement.width ) / 2;
+					this.videoElement.style.left = pos + "px";
+					this.videoElement.style.top = "0px";
+				}
+			}
+
+			break;
+		case ScaleMode.SCALE_CROP:
+			this.videoElement.style["-webkit-transform"] = "scaleX(1) scaleY(1)";
+			if ( this.videoElement.videoWidth > this.width ){
+				if ( this.videoElement.videoWidth < this.videoElement.videoHeight ){
+					var scale = this.width / this.videoElement.videoWidth;
+					this.videoElement.width = this.width;
+					this.videoElement.height = this.videoElement.videoHeight * scale;
+					var pos   = ( this.height - this.videoElement.height ) / 2;
+					this.videoElement.style.left = "0px";
+					this.videoElement.style.top = pos + "px";
+				} else {				
+					var scale = this.height / this.videoElement.videoHeight;
+					this.videoElement.width = this.videoElement.videoWidth * scale ;
+					this.videoElement.height = this.height;
+					var pos   = ( this.width - this.videoElement.width ) / 2;
+					this.videoElement.style.left = pos + "px";
+					this.videoElement.style.top = "0px";
+				}
+			} else {			
+				if ( this.videoElement.videoWidth > this.videoElement.videoHeight ){
+					var scale = this.width / this.videoElement.videoWidth;
+					this.videoElement.width = this.width;
+					this.videoElement.height = this.videoElement.videoHeight * scale;
+					var pos   = ( this.height - this.videoElement.height) / 2;
+					this.videoElement.style.left = "0px";
+					this.videoElement.style.top = pos + "px";
+				} else {				
+					var scale = this.height / this.videoElement.videoHeight;
+					this.videoElement.width = this.videoElement.videoWidth * scale ;
+					this.videoElement.height = this.height;
+					var pos   = ( this.width - this.videoElement.width ) / 2;
+					this.videoElement.style.left = pos + "px";
+					this.videoElement.style.top = "0px";
+				}
+			}
+			break;
+		case ScaleMode.SCALE_STRETCH:
+			this.videoElement.width 		= this.videoElement.videoWidth;
+			this.videoElement.height 		= this.videoElement.videoHeight;
+			var scaleX = this.width / this.videoElement.width;
+			var scaleY = this.height / this.videoElement.height;
+			
+			console.log( this.width +":"+this.height);
+			console.log( this.videoElement.width +":"+this.videoElement.height);
+
+			console.log( scaleX +":"+ scaleY);
+			this.videoElement.style["-webkit-transform"] = "scaleX("+scaleX+") scaleY("+scaleY+")";
+			this.videoElement.style.left 	= "0px";
+			this.videoElement.style.top		= "0px";
+			break;
+
+		case ScaleMode.SCALE_NONE:
+			this.videoElement.style["-webkit-transform"] = "scaleX(1) scaleY(1)";
+			this.videoElement.width 		= this.videoElement.videoWidth;
+			this.videoElement.height 		= this.videoElement.videoHeight;
+			this.videoElement.style.left 	= "0px";
+			this.videoElement.style.top		= "0px";
+			break;
+	}
+};
+
 /** 
 * @function
 */
 LocalVideoView.prototype.goFullscreen 	= function(){
-	
+	if ( this.videoElement.webkitRequestFullScreen ){
+		this.videoElement.webkitRequestFullScreen();
+	} else if ( this.videoElement.mozRequestFullScreen ){
+		this.videoElement.webkitRequestFullScreen();
+	} else if ( this.videoElement.requestFullScreen ){
+		this.videoElement.requestFullScreen();		
+	} else {
+		console.log("no fullscreen 4 u")
+	}
 };
 
 /** 
@@ -113,8 +270,8 @@ LocalVideoView.prototype.goFullscreen 	= function(){
 * @param	{Float} level (0-1)
 */
 LocalVideoView.prototype.setVolume 		= function( level ){
-	if ( this.domElement ){
-		this.domElement.volume = level;
+	if ( this.videoElement ){
+		this.videoElement.volume = level;
 	}
 };
 
