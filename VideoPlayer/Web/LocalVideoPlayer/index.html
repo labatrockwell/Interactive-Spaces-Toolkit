@@ -1,0 +1,37 @@
+<html>
+<head>
+	<script>
+		var path = document.location.pathname;
+		var dir = path.substr(0, path.lastIndexOf('/')+1);
+
+		var labvideo = labvideo || {};
+		if (labvideo.src == undefined) labvideo.src = dir + "../labvideo/js/";
+	</script>
+	<script src="../labvideo/js/labvideo.js"></script>
+	<script src="js/LocalVideoView.js"></script>
+	<script>
+		window.onload = function(){
+			model = new BaseVideoModel();
+			view = new LocalVideoView();
+			controller = new BaseVideoController(model, view);
+
+			var videos = ["videos/blobby_1.mp4", "videos/bikes.mp4"];
+			var which = 0;
+
+			view.setup(document.body);
+			loadVideo();
+
+			window.setInterval(loadVideo, 2000);
+
+			function loadVideo(){
+				view.load(videos[which]);
+				view.start();
+				which++;
+				if ( which >= videos.length ) which = 0;
+			}
+		};
+	</script>
+</head>
+<body>
+</body>
+</html>
