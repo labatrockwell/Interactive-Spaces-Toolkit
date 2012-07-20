@@ -1,7 +1,7 @@
 // Loop stuff
 var LoopType = {
 	LOOP_REPEAT:"loop_repeat",
-	LOOP_BACK_AND_FORTH:"loop_back_and_forth";
+	LOOP_BACK_AND_FORTH:"loop_back_and_forth"
 };
 
 // All functions to do with display
