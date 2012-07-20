@@ -1,3 +1,4 @@
+// This has to be served out of a webserver to work ... not local files 
 
 var videoViewList = [];
 
