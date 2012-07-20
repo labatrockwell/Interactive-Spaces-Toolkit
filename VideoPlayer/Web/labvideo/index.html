@@ -2,10 +2,12 @@
 <head>
 	<script src="js/labvideo.js"></script>
 	<script>
+	var globalController;
 		window.onload = function(){
 			var model = new BaseVideoModel();
 			var view = new BaseVideoView();
-			var controller = new BaseVideoController(model, view);
+			globalController = new YouTubeVideoController(model, view);
+			globalController.load("globalController", "MO_819DXjuc");
 		};
 	</script>
 </head>

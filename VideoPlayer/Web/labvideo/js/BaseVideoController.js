@@ -8,8 +8,6 @@
 var BaseVideoController = function( model, view ){
 	this.model = model;
 	this.view = view; //BaseVideoView
-	this.view.setTitle(this.model.title);
-	this.view.load(this.model.URL);
 };
 
 /** 
@@ -19,8 +17,7 @@ var BaseVideoController = function( model, view ){
 */
 BaseVideoController.prototype.setModel = function( model ){
 	this.model = model;
-	this.view.setTitle(this.model.title);
-	this.view.load(this.model.URL);
+	this.view.load(this.model);
 };
 
 //BaseVideoModel 
@@ -44,9 +41,7 @@ BaseVideoController.prototype.setLoopType = function( type ){};
 * @function
 * @param		{String} url
 */
-BaseVideoController.prototype.load = function( url ){
-	this.view.load(url);
-}; 
+BaseVideoController.prototype.load = function( url ){}; 
 
 BaseVideoController.prototype.unload = function(){
 	this.view.unload();
@@ -74,14 +69,13 @@ BaseVideoController.prototype.seek = function( where ){
 */
 BaseVideoController.prototype.setMetadata = function(){
 	//this.view.setMetadata();
-	this.view.setTitle(this.model.title);
 };
 /** 
 * @function
 * @param		{BaseVideoModel} model
 */
 BaseVideoController.prototype.load = function(){
-	return this.view.load( this.model.URL );
+	return this.view.load( this.model );
 };
 
 // Called by GUI
