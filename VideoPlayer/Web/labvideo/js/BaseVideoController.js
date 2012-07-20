@@ -8,14 +8,17 @@
 var BaseVideoController = function( model, view ){
 	this.model = model;
 	this.view = view; //BaseVideoView
-}
+};
 
 /** 
 * maybe this is the same as load?
 * @function
 * @param		{BaseVideoModel} model
 */
-BaseVideoController.prototype.setModel = function( model ){};
+BaseVideoController.prototype.setModel = function( model ){
+	this.model = model;
+	this.view.load(this.model);
+};
 
 //BaseVideoModel 
 BaseVideoController.prototype.getMetadata = function(){};
@@ -39,7 +42,10 @@ BaseVideoController.prototype.setLoopType = function( type ){};
 * @param		{String} url
 */
 BaseVideoController.prototype.load = function( url ){
-	this.view.load(url);
+	if (url){
+		this.model.setURL(url);
+	}
+	this.view.load(this.model.getURL());
 }; 
 
 BaseVideoController.prototype.unload = function(){
@@ -66,22 +72,15 @@ BaseVideoController.prototype.seek = function( where ){
 * @function
 * @param		{BaseVideoModel} model
 */
-BaseVideoController.prototype.setMetadata = function( model ){
-	this.view.setMetadata( model );
-}
-/** 
-* @function
-* @param		{BaseVideoModel} model
-*/
-BaseVideoController.prototype.load = function( model ){
-	return this.view.load( model.url );
-}
+BaseVideoController.prototype.setMetadata = function(){
+	//this.view.setMetadata();
+};
 
 // Called by GUI
 BaseVideoController.prototype.goFullscreen = function(){
 	this.view.goFullscreen();
-}
+};
 
 BaseVideoController.prototype.setVolume = function( level ){
 	this.view.setVolume( level );
-}
+};

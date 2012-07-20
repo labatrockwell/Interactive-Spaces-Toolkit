@@ -3,12 +3,24 @@
 	<link rel="stylesheet" href="css/main.css">
 	<script src="js/labvideo.js"></script>
 	<script>
+		var globalController;
 		window.onload = function(){
 			var model = new BaseVideoModel();
-			var view = new BaseVideoView();
-			var controller = new BaseVideoController(model, view);
+			//var view = new BaseVideoView();
+			var view = new LocalVideoView();
+			//globalController = new YouTubeVideoController(model, view);
+			globalController = new LocalVideoController(model, view);
+			//globalController.load("MO_819DXjuc");
+			globalController.load("../LocalVideoPlayer/videos/bikes.mp4");
+			setTimeout(playfunc, 2000);
+		};
+		playfunc = function(){
+			globalController.start();
 		};
 	</script>
+	<script src="../LocalVideoPlayer/js/LocalVideoView.js"></script>
+	<script src="js/LocalVideoController.js"></script>
+	<script src="js/jquery-1.7.2.min.js"></script>
 </head>
 <body>
 </body>

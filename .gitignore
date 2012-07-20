@@ -1,3 +1,6 @@
 _meta/
 *.sublime-project
 *.sublime-workspace
+
+*.mp4
+*.ogg
