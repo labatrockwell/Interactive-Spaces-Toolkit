@@ -22,7 +22,7 @@ LocalVideoView.prototype.setup = function( parentElement ){
 	this.domElement.appendChild(this.videoElement);
 
 	// setup style props of dom element
-	this.domElement.style.position = "absolute";
+	this.domElement.style.position = "static";
 	this.domElement.style.overflow = "hidden";
 	this.domElement.style.backgroundColor = "black";
 	this.videoElement.style.position = "absolute";
@@ -135,6 +135,9 @@ LocalVideoView.prototype.setDimensions = function( width, height ){
 	this.width = width;
 	this.height = height;
 
+	// turn off 'static' property
+	this.domElement.style.position = "absolute";
+
 	this.domElement.style.width = this.width + "px";
 	this.domElement.style.height = this.height + "px";	
 	
@@ -149,6 +152,10 @@ LocalVideoView.prototype.setDimensions = function( width, height ){
 LocalVideoView.prototype.setScaleMode = function( mode ){
 	this.scaleMode = mode;
 
+	if ( this.width == 0 && this.height == 0){
+		console.warn("scale mode is not set if there is not a set width + height")
+		return;
+	}
 	//if ( this.videoElement.videoWidth == 0 || this.videoElement.videoHeight == 0) return;
 
 	switch ( this.scaleMode){
@@ -230,11 +237,6 @@ LocalVideoView.prototype.setScaleMode = function( mode ){
 			this.videoElement.height 		= this.videoElement.videoHeight;
 			var scaleX = this.width / this.videoElement.width;
 			var scaleY = this.height / this.videoElement.height;
-			
-			console.log( this.width +":"+this.height);
-			console.log( this.videoElement.width +":"+this.videoElement.height);
-
-			console.log( scaleX +":"+ scaleY);
 			this.videoElement.style["-webkit-transform"] = "scaleX("+scaleX+") scaleY("+scaleY+")";
 			this.videoElement.style.left 	= "0px";
 			this.videoElement.style.top		= "0px";
