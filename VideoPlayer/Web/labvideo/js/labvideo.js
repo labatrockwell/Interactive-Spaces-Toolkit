@@ -1,3 +1,6 @@
+var LAB = LAB || {};
+var included = included || {};
+
 // for now:
 // var labvideo = {};
 // labvideo.src = "path/to/where" e.g. js/labvideo/
@@ -26,7 +29,7 @@ LAB.inherit = function(p) {
 @private
 */
 LAB.writeScriptTag_ = function(src) {
-	var doc = LAB.global.document;
+	var doc = document;
 	doc.write(
 		'<script type="text/javascript" src="' + src + '"></' + 'script>');
 	included[src] = true;
