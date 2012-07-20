@@ -5,7 +5,7 @@ var included = included || {};
 // var labvideo = {};
 // labvideo.src = "path/to/where" e.g. js/labvideo/
 var labvideo = labvideo || {};
-if (labvideo.src == undefined) labvideo.src = "js/labvideo";
+if (labvideo.src == undefined) labvideo.src = "js/";
 
 var LAB = LAB || {};
 
