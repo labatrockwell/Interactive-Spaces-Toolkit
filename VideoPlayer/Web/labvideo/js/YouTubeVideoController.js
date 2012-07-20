@@ -3,10 +3,10 @@
 //probably just so we start off with a declared object and don't get js errors?
 var YouTubeVideoController = function(model, view){
 	BaseVideoController.call(this, model, view);
-	this.view.setup();
+	this.view.setup(document.body);
 };
 
-YouTubeVideoController.prototype = LAB.inherit(BaseVideoModel.prototype);
+YouTubeVideoController.prototype = LAB.inherit(BaseVideoController.prototype);
 YouTubeVideoController.prototype.constructor = YouTubeVideoController;
 
 YouTubeVideoController.prototype.load = function(videoID){
