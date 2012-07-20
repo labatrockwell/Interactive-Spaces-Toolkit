@@ -4,10 +4,13 @@
 	<script src="js/labvideo.js"></script>
 	<script>
 		var globalController;
+		var model;
+		var view;
+		
 		window.onload = function(){
-			var model = new BaseVideoModel();
+			model = new BaseVideoModel();
 
-			var view = new RemoteVideoView();
+			view = new RemoteVideoView();
 			globalController = new YouTubeVideoController(model, view);
 			globalController.load("MO_819DXjuc");
 			
@@ -24,8 +27,8 @@
 	<script src="js/LocalVideoController.js"></script>
 	<script src="js/jquery-1.7.2.min.js"></script>
 
-		<script src="http://www.youtube.com/apiplayer?enablejsapi=1&version=3"></script>
-		<script src="http://www.youtube.com/iframe_api"></script>
+	<script src="http://www.youtube.com/apiplayer?enablejsapi=1&version=3"></script>
+	<script src="http://www.youtube.com/iframe_api"></script>
 	
 </head>
 <body>
