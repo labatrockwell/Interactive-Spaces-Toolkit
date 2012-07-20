@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<!-- Tested In Chrome. -->
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Web Socket Example</title>
+
+    <script type="text/javascript" charset="utf-8" src="js/jquery-1.6.2.min.js"></script>
+
+    <script type="text/javascript">
+
+var ws; 
+
+$(document).ready(function () {
+  ws = new WebSocket("ws://localhost:" + gup("port") + "/websocket"); 
+  console.log("ws port = " + gup("port"));
+  $('#status').text("ws port = " + gup("port"));
+
+  ws.onopen = function(event) { 
+      $('#status').text("The WebSocket Connection Is Open."); 
+  }
+
+  ws.onmessage = function(event) { 
+      var data = JSON.parse(event.data);
+      $('#result').text("Result= "+event.data);
+      document.getElementById("fName").innerHTML = data.controllerName
+  }
+
+  ws.onclose = function(event) { 
+      $('#status').text("The WebSocket Connection Has Been Closed."); 
+  }
+}); 
+
+
+function gup( name ) {
+    name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+    var regexS = "[\\?&]"+name+"=([^&#]*)";
+    var regex = new RegExp( regexS );
+    var results = regex.exec( window.location.href );
+    if( results == null ) {
+        return "";
+    } else {
+        return results[1];
+    }
+}
+
+function videoPathLocal(val) {
+  $('#status').text("videoPathLocal: " + val)
+  var command = JSON.stringify({type: 'local', path: val})
+  ws.send(command);
+}
+
+function videoPathYouTube(val) {
+  $('#status').text("videoPathYouTube: " + val)
+  var command = JSON.stringify({type: 'youtube', path: val})
+  ws.send(command);
+}
+
+
+</script>
+
+</head>
+
+<body>
+
+    <h1>Web Socket Activity Example</h1>
+
+    <div id="fName"></div><br/>
+
+	<div> Local:<br />
+	  <input type="text" name="localPath" />
+	  <input type="button" value="Change Video" onclick="videoPathLocal(document.getElementsByName('localPath')[0].value)"/>
+
+    </div>
+
+	<div> YouTube:<br />
+	  <input type="text" name="youTubePath" />
+	  <input type="button" value="Change Video" onclick="videoPathYouTube(document.getElementsByName('youTubePath')[0].value)"/>
+
+    </div>
+
+</body>
+
+</html>

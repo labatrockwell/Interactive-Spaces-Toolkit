@@ -1,0 +1,3 @@
+These two apps do not require any configs.  Just build them, create Live Activities for them, start them up, and they should talk to each other!
+
+The control app will send a URL (well, anything you type into the text box and submit) over IS to the VideoPlayerWrapper which then only prints the received message out to the console.

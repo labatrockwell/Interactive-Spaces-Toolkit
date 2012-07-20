@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<activity>
+    <name>Video Player Controller</name>
+    <description>
+	  Sends video URLs to the Video Player Wrapper
+    </description>
+    <version>0.0.1</version>
+    <identifyingName>com.rockwell.videoplayer.controller</identifyingName>
+</activity>
