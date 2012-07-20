@@ -27,35 +27,35 @@ var BaseVideoModel = function(){
 		return this.ID;
 	};
 
-	this.getTitle = funciton() {
+	this.getTitle = function() {
 		return this.getTitle;
 	};
 
-	this.getDescription = funciton() {
+	this.getDescription = function() {
 		return this.description;
 	};
 
-	this.getLength = funciton() {
+	this.getLength = function() {
 		return this.length;
 	};
 
-	this.getThumbnails = funciton() {
+	this.getThumbnails = function() {
 		return this.thumbnails;
 	};
 
-	this.getClosedCaptioning = funciton() {
+	this.getClosedCaptioning = function() {
 		return this.closedCaptioning;
 	};
 
-	this.getLocation = funciton() {
+	this.getLocation = function() {
 		return this.location;
 	};
 
-	this.getKeyframes = funciton() {
+	this.getKeyframes = function() {
 		return this.keyframes;
 	};
 
-	this.getCustomFields = funciton() {
+	this.getCustomFields = function() {
 		return this.customFields;
 	};
 
@@ -66,39 +66,39 @@ var BaseVideoModel = function(){
 		this.URL = val;
 	};
 
-	this.setID = funciton(val) {
+	this.setID = function(val) {
 		this.ID = val;
 	};
 
-	this.setTitle = funciton(val) {
+	this.setTitle = function(val) {
 		this.title = val;
 	};
 
-	this.setDescription = funciton(val) {
+	this.setDescription = function(val) {
 		this.description = val;
 	};
 
-	this.setLength = funciton(val) {
+	this.setLength = function(val) {
 		this.length = val;
 	};
 
-	this.setThumbnails = funciton(val) {
+	this.setThumbnails = function(val) {
 		this.thumbnails = val;
 	};
 
-	this.setClosedCaptioning = funciton(val) {
+	this.setClosedCaptioning = function(val) {
 		this.closedCaptioning = val;
 	};
 
-	this.setLocation = funciton(val) {
+	this.setLocation = function(val) {
 		this.location = val;
 	};
 
-	this.setKeyframes = funciton(val) {
+	this.setKeyframes = function(val) {
 		this.keyframes = val;
 	};
 
-	this.setCustomFields = funciton(val) {
+	this.setCustomFields = function(val) {
 		this.customFields = val;
 	};
 
