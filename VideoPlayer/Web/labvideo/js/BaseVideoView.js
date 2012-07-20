@@ -17,6 +17,8 @@ var BaseVideoView = function(){
 
 	this.loopType = LoopType.LOOP_REPEAT;
 	this.scaleMode = ScaleMode.SCALE_LETTERBOX;
+	this.width = 0;
+	this.height = 0;
 }
 
 /** 
@@ -68,7 +70,10 @@ BaseVideoView.prototype.seek = function( where ){}; //0-1
 * @param	{Integer} width
 * @param	{Integer} height
 */
-BaseVideoView.prototype.setDimensions = function( width, height ){};
+BaseVideoView.prototype.setDimensions = function( width, height ){
+	this.width = width;
+	this.height = height;
+};
 
 /** 
 * @function
