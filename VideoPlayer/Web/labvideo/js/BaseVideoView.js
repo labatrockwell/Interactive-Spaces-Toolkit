@@ -4,9 +4,19 @@ var LoopType = {
 	LOOP_BACK_AND_FORTH:"loop_back_and_forth"
 }
 
+var ScaleMode = {
+	SCALE_NONE : "no_scale",
+	SCALE_LETTERBOX : "scale_letterbox",
+	SCALE_CROP : "scale_crop",
+	SCALE_STRETCH : "scale_stretch"
+}
+
 // All functions to do with display
 var BaseVideoView = function(){
 	// what properties should this have?
+
+	this.loopType = LoopType.LOOP_REPEAT;
+	this.scaleMode = ScaleMode.SCALE_LETTERBOX;
 }
 
 /** 
@@ -51,11 +61,54 @@ BaseVideoView.prototype.unload = function(){}
 */
 BaseVideoView.prototype.seek = function( where ){}; //0-1
 
+// Cropping / skewing / rotation
+
+/** 
+* @function
+* @param	{Integer} width
+* @param	{Integer} height
+*/
+BaseVideoView.prototype.setDimensions = function( width, height ){};
+
+/** 
+* @function
+* @returns	{Object} {width, height}
+*/
+BaseVideoView.prototype.getDimensions = function(){};
+
+/** 
+* @function
+* @param	{ScaleMode} mode
+*/
+BaseVideoView.prototype.setScaleMode = function( mode ){};
+
+/** 
+* @function
+* @returns	{ScaleMode}
+*/
+BaseVideoView.prototype.getScaleMode = function(){};
+
+/** 
+* @function
+* @param	{Integer} degrees
+*/
+BaseVideoView.prototype.setRotation = function( degrees ){};
+
 // GUI -> Controller -> View
 /** 
 * @function
 */
-BaseVideoView.prototype.goFullscreen 	= function(){};
+BaseVideoView.prototype.goFullscreen 	 = function(){};
+
+/** 
+* @function
+*/
+BaseVideoView.prototype.leaveFullscreen	 = function(){};
+
+/** 
+* @function
+*/
+BaseVideoView.prototype.toggleFullscreen = function(){};
 
 /** 
 * @function
