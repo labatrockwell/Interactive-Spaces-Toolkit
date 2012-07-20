@@ -5,7 +5,7 @@
 var BasePlaylistController = function(){
 	//Array <BaseVideoModel> 
 	this.videos = [];
-}
+};
 
 /**
 * @function
@@ -13,7 +13,7 @@ var BasePlaylistController = function(){
 */
 BasePlaylistController.prototype.load = function ( BaseVideoModels ){
 	return true;
-}
+};
 
 BasePlaylistController.prototype.unload = function(){};
 BasePlaylistController.prototype.previous = function(){};

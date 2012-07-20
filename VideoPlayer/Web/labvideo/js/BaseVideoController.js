@@ -8,14 +8,20 @@
 var BaseVideoController = function( model, view ){
 	this.model = model;
 	this.view = view; //BaseVideoView
-}
+	this.view.setTitle(this.model.title);
+	this.view.load(this.model.URL);
+};
 
 /** 
 * maybe this is the same as load?
 * @function
 * @param		{BaseVideoModel} model
 */
-BaseVideoController.prototype.setModel = function( model ){};
+BaseVideoController.prototype.setModel = function( model ){
+	this.model = model;
+	this.view.setTitle(this.model.title);
+	this.view.load(this.model.URL);
+};
 
 //BaseVideoModel 
 BaseVideoController.prototype.getMetadata = function(){};
@@ -66,22 +72,23 @@ BaseVideoController.prototype.seek = function( where ){
 * @function
 * @param		{BaseVideoModel} model
 */
-BaseVideoController.prototype.setMetadata = function( model ){
-	this.view.setMetadata( model );
-}
+BaseVideoController.prototype.setMetadata = function(){
+	//this.view.setMetadata();
+	this.view.setTitle(this.model.title);
+};
 /** 
 * @function
 * @param		{BaseVideoModel} model
 */
-BaseVideoController.prototype.load = function( model ){
-	return this.view.load( model.url );
-}
+BaseVideoController.prototype.load = function(){
+	return this.view.load( this.model.URL );
+};
 
 // Called by GUI
 BaseVideoController.prototype.goFullscreen = function(){
 	this.view.goFullscreen();
-}
+};
 
 BaseVideoController.prototype.setVolume = function( level ){
 	this.view.setVolume( level );
-}
+};
