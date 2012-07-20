@@ -4,6 +4,8 @@
 var labvideo = labvideo || {};
 if (labvideo.src == undefined) labvideo.src = "js/labvideo";
 
+var LAB = LAB || {};
+
 // Include necessary LAB functions for now
 // Includes are at the bottom of the file
 
