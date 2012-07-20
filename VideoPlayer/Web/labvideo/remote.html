@@ -1,0 +1,15 @@
+<html>
+<head>
+	<script src="js/labvideo.js"></script>
+	<script src="js/RemoteVideoView.js"></script>
+	<script>
+		window.onload = function(){
+			var model = new BaseVideoModel();
+			var view = new RemoteVideoView();
+			var controller = new BaseVideoController(model, view);
+		};
+	</script>
+</head>
+<body>
+</body>
+</html>

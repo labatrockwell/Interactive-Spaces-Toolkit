@@ -60,11 +60,18 @@ LAB.getScriptPath = function(filename) {
 	return "";
 };
 
+labvideo.src = "js/";
 LAB.require(labvideo.src+"Events.js");
 LAB.require(labvideo.src+"BaseVideoModel.js");
 LAB.require(labvideo.src+"BaseVideoView.js");
 LAB.require(labvideo.src+"BaseVideoController.js");
 LAB.require(labvideo.src+"BasePlaylistController.js");
-
+/*
+LAB.require(labvideo.src+"Events.js");
+LAB.require(labvideo.src+"BaseVideoModel.js");
+LAB.require(labvideo.src+"BaseVideoView.js");
+LAB.require(labvideo.src+"BaseVideoController.js");
+LAB.require(labvideo.src+"BasePlaylistController.js");
+*/
 
 
