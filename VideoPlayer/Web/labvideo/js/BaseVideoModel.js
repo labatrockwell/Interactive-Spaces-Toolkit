@@ -23,7 +23,7 @@ var BaseVideoModel = function(){
 		return this.URL;
 	};
 
-	this.getID = funciton() {
+	this.getID = function() {
 		return this.ID;
 	};
 
