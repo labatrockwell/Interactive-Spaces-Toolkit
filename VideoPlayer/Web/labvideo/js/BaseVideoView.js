@@ -39,7 +39,7 @@ BaseVideoView.prototype.load = function( url ){};
 * @function
 * @returns {Boolean} Success?
 */
-BaseVideoView.prototype.start = function(){};
+BaseVideoView.prototype.play = function(){};
 
 /** 
 * Stop + Seek to 0

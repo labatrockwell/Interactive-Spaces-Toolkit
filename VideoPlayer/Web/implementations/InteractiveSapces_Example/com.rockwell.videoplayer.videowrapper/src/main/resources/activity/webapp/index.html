@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<!-- Tested In Chrome. -->
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Web Socket Example</title>
+
+    <script type="text/javascript" charset="utf-8" src="js/jquery-1.6.2.min.js"></script>
+
+    <script type="text/javascript">
+
+var ws; 
+
+$(document).ready(function () {
+  ws = new WebSocket("ws://localhost:" + gup("port") + "/websocket");
+
+  ws.onopen = function(event) { 
+      $('#status').text("The WebSocket Connection Is Open."); 
+      console.log("WebSocket Connection Is Open");
+  }
+
+  ws.onmessage = function(event) { 
+      var data = JSON.parse(event.data);
+      $('#result').text("Result= "+event.data);
+      console.log("message: " + event.data);
+  }
+
+  ws.onclose = function(event) { 
+      $('#status').text("The WebSocket Connection Has Been Closed."); 
+      console.log("WebSocket Connection Is Closed");
+  }
+}); 
+
+
+function gup( name ) {
+    name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+    var regexS = "[\\?&]"+name+"=([^&#]*)";
+    var regex = new RegExp( regexS );
+    var results = regex.exec( window.location.href );
+    if( results == null ) {
+        return "";
+    } else {
+        return results[1];
+    }
+}
+
+
+
+</script>
+
+</head>
+
+<body>
+
+    <h1>Web Socket Activity Example</h1>
+
+    <div id="status"></div><br/>
+
+	<div>VIDEO PLAYER WOULD GO HERE</dev>
+    <br />
+    <div>To see if your app is getting the IS messages, look at the JS console</div>
+</body>
+
+</html>

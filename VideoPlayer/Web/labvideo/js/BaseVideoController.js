@@ -52,8 +52,8 @@ BaseVideoController.prototype.unload = function(){
 	this.view.unload();
 };
 
-BaseVideoController.prototype.start = function(){
-	this.view.start();
+BaseVideoController.prototype.play = function(){
+	this.view.play();
 };
 
 BaseVideoController.prototype.stop = function(){

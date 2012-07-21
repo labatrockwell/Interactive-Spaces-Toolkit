@@ -1,0 +1,32 @@
+<html>
+<head>
+	<link rel="stylesheet" href="css/main.css">
+	<script src="js/jquery-1.7.2.min.js"></script>
+
+	<script src="../../labvideo/js/labvideo.js"></script>
+	<script src="js/RemoteKeypressUI.js"></script>
+
+	<script src="js/RemoteVideoView.js"></script>	
+	<script src="js/YouTubeVideoController.js"></script>
+
+	<script src="http://www.youtube.com/apiplayer?enablejsapi=1&version=3"></script>
+	<script src="http://www.youtube.com/iframe_api"></script>	
+
+	<script>
+		var globalController;
+		var model;
+		var view;
+		var userInterface;
+		
+		window.onload = function(){
+			model = new BaseVideoModel();
+			view = new RemoteVideoView();
+			globalController = new YouTubeVideoController(model, view);
+			userInterface = new KeyUI(globalController);
+		};
+	</script>
+	
+</head>
+<body>
+</body>
+</html>

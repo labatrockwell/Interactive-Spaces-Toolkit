@@ -5,9 +5,11 @@ var included = included || {};
 // var labvideo = {};
 // labvideo.src = "path/to/where" e.g. js/labvideo/
 var labvideo = labvideo || {};
-if (labvideo.src == undefined) labvideo.src = "js/";
 
-var LAB = LAB || {};
+// set path for labvideo files to same path as examples folder 
+var path = document.location.pathname;
+var dir = path.substr(0, path.indexOf('/implementations'));
+labvideo.src = dir + "/labvideo/js/";
 
 // Include necessary LAB functions for now
 // Includes are at the bottom of the file
@@ -30,6 +32,7 @@ LAB.inherit = function(p) {
 */
 LAB.writeScriptTag_ = function(src) {
 	var doc = document;
+	console.log("writeScriptTag_: " + src);
 	doc.write(
 		'<script type="text/javascript" src="' + src + '"></' + 'script>');
 	included[src] = true;
@@ -42,6 +45,17 @@ LAB.writeScriptTag_ = function(src) {
 	@public
 */
 LAB.require = function(src) {
+	console.log("require: " + src);
+	src in included ? console.log("already included") : LAB.writeScriptTag_(src);
+};
+
+/**
+	Use this to load script files! (only script files right now)
+	@function
+	@public
+*/
+LAB.require = function(src) {
+	console.log("require: " + src);
 	src in included ? console.log("already included") : LAB.writeScriptTag_(src);
 };
 
@@ -60,13 +74,18 @@ LAB.getScriptPath = function(filename) {
 	return "";
 };
 
+// import base models
 LAB.require(labvideo.src+"Events.js");
 LAB.require(labvideo.src+"BaseVideoModel.js");
 LAB.require(labvideo.src+"BaseVideoView.js");
 LAB.require(labvideo.src+"BaseVideoController.js");
 LAB.require(labvideo.src+"BasePlaylistController.js");
-LAB.require(labvideo.src+"YouTubeVideoController.js");
-LAB.require(labvideo.src+"RemoteVideoView.js");
+LAB.require(labvideo.src+"BaseUI.js");
+
+// import implementation files
+// LAB.require(labvideo.src+"LocalVideoController.js");
+// LAB.require(labvideo.src+"YouTubeVideoController.js");
+// LAB.require(labvideo.src+"RemoteVideoView.js");
 
 
 
