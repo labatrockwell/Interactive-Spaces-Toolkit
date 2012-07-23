@@ -31,3 +31,11 @@ Repository that holds tools created for prototyping and building interactive spa
 		LocalVideoView.prototype.constructor = LocalVideoView;
 * Agree on when we should use var
 
+
+** Thoughts on: UI Model **
+* Consider setting up UI model so that we have a UI controller that interprets events from a UI element and connects to the main/video/playlist controller. This would be useful for the following scenarios:
+** When we have a external UI element, such as an IS app that sends UI events via routes. In this case the UI controller class would receive the UI messages via a route, interpret them and call the appropriate methods from the main/video/playlist controller.
+** when we have a view that includes UI elements. In this case the UI controller would be linked to the view, and the view would pass on the UI events to this UI controller to be interpreted. The UI controller would call the appropriate methods from the main/video/playlist controller. 
+
+
+
