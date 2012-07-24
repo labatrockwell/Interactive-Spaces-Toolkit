@@ -82,10 +82,4 @@ LAB.require(labvideo.src+"BaseVideoController.js");
 LAB.require(labvideo.src+"BasePlaylistController.js");
 LAB.require(labvideo.src+"BaseUI.js");
 
-// import implementation files
-// LAB.require(labvideo.src+"LocalVideoController.js");
-// LAB.require(labvideo.src+"YouTubeVideoController.js");
-// LAB.require(labvideo.src+"RemoteVideoView.js");
-
-
 
