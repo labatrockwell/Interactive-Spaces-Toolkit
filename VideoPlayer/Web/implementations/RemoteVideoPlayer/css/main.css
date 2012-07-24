@@ -1,9 +1,44 @@
 @import url('reset.css');
 
+/* -----------------------------------------
+   Video Page
+----------------------------------------- */
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+#video-player {
+  text-align: center;
+  z-index: 1100;
+  position: fixed;
+  top: 0; 
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#full-screen-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: #000;
+}
+
+/* -----------------------------------------
+   README Page
+----------------------------------------- */
+
 pre {
-	font-family: courier, monospace;
+    font-family: courier, monospace;
 }
 
 .about {
 	padding:20px;
 }
+
+

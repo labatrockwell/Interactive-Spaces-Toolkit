@@ -10,6 +10,10 @@ var KeyUI = function( controller ) {
 			case 115:
 				controller.stop();
 				break;
+			case 46:
+				// toggle full screen
+				controller.view.toggleFullscreen();
+				break;
 			case 109:
 			case 49:
 				console.log("8uDuls5TyNE");

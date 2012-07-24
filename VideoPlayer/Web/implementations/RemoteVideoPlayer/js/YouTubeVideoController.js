@@ -1,12 +1,21 @@
-//no idea why this is here,
-//it was in Brett's e-mail.
-//probably just so we start off with a declared object and don't get js errors?
 var YouTubeVideoController = function(model, view){
-	BaseVideoController.call(this, model, view);
-	this.view.setup(document.body); // move to BaseVideoController
+    var self = this;
+
+    // extend from base and enables setup to be called below
+	BaseVideoController.call(self, model, view);
+
+    // lazy load api
+    var $api = $("<script/>").prop("src", "http://www.youtube.com/iframe_api");
+    $api.insertAfter($("script").first());
+
+    // when youtube api is ready...
+    window.onYouTubeIframeAPIReady = function() {
+        self.view.setup(document.getElementById("video-player-placeholder"));
+    }
 };
 
 YouTubeVideoController.prototype = LAB.inherit(BaseVideoController.prototype);
+
 YouTubeVideoController.prototype.constructor = YouTubeVideoController;
 
 YouTubeVideoController.prototype.load = function(videoID){

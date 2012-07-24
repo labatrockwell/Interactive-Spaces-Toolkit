@@ -14,7 +14,9 @@ var RemoteVideoView = function(_p){
 	this.autoplay = 0;
 	this.wrapper = "videoWrapper";	//	ID of container div
 	this.playerId = 'ytPlayer';		//	ID of video player element
-	//this.player;
+
+	this.oheight = 390; // original height, full-screen may alter
+	this.owidth = 640; // original width, full-screen may alter
 }
 
 RemoteVideoView.prototype = {
@@ -25,12 +27,12 @@ RemoteVideoView.prototype = {
 
 		videoViewList.push(this);
 		this.player = new YT.Player(_target, {
-			height: '390',
-			width: '640',
+			height: this.oheight,
+			width: this.owidth,
 			videoId: this.v.id,
 			playerVars: {
 				controls: "0",
-				showinfo: "0"
+				showinfo: this.showinfo
 			},
 			events: {
 				'onReady': this.onPlayerReady,
@@ -65,6 +67,46 @@ RemoteVideoView.prototype = {
 	stop:function(){
 		this.player.stopVideo();
 	},
+	goFullscreen: function() {
+
+		// hide scroll bar
+		$("body").addClass("no-scroll");
+
+		// scale dimensions out to match window
+		var max_width = $(window).width();
+		var max_height = $(window).height();
+		var aspect_ratio = this.owidth / this.oheight;
+		
+		// assumes 16:9 or 4:3 aspect ratios
+		// wider than tall
+		var h = max_height;
+		var w = max_width/aspect_ratio; 
+
+		// resize video accordingly to match full screen
+		this.player.setSize(w,h);
+
+		// show a backdrop in case video falls short of full window for any reason
+		$("#full-screen-backdrop").show();
+	},
+	leaveFullscreen: function() {
+
+		// restore default scroll-bar behavior
+		$("body").removeClass("no-scroll");
+
+		// restore to original dimensions
+		this.player.setSize(this.owidth, this.oheight);
+		
+		// hide video backdrop
+		$("#full-screen-backdrop").hide();
+	},
+	toggleFullscreen: function() {
+		if ($("#full-screen-backdrop").is(":visible")) {
+			this.leaveFullscreen();
+		}
+		else {
+			this.goFullscreen();
+		}
+	},
 	onPlayerReady:function(){
 		console.log("Player Ready");
 	},
@@ -80,70 +122,3 @@ function onStateChange() {
 function onytplayerStateChange() {
 	console.log("======================= ME TOO =======================");
 }
-
-
-// 2. This code loads the IFrame Player API code asynchronously.
-/*
-var tag = document.createElement('script');
-tag.src = "//www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-*/
-
-// 3. This function creates an <iframe> (and YouTube player)
-//    after the API code downloads.
-
-/*
-var player;
-function onYouTubeIframeAPIReady() {
-	player = new YT.Player('player', {
-	  height: '390',
-	  width: '640',
-	  videoId: 'z_AbfPXTKms',
-	  events: {
-	    'onReady': onPlayerReady,
-	    'onStateChange': onPlayerStateChange
-	  }
-	});
-}
-*/
-
-// 4. The API will call this function when the video player is ready.
-/*
-function onPlayerReady(event) {
-	event.target.playVideo();
-}
-*/
-
-// 5. The API calls this function when the player's state changes.
-//    The function indicates that when playing a video (state=1),
-//    the player should play for six seconds and then stop.
-
-/*
-var done = false;
-function onPlayerStateChange(event) {
-	if (event.data == YT.PlayerState.PLAYING && !done) {
-	  setTimeout(stopVideo, 6000);
-	  done = true;
-	}
-}
-function playVideo() {
-	player.playVideo();
-}
-function stopVideo() {
-	player.stopVideo();
-}
-*/
-
-/*
-function onYouTubePlayerReady(){
-	console.log("onYouTubePlayerReady");
-}
-*/
-
-/*
-onStateChange event: Player state changed to: "[object Object]" (playing)
-loadVideoById(Zhawgd0REhA, parseInt(0), default);
-onPlaybackQualityChange event: Playback quality changed to "[object Object]"
-onStateChange event: Player state changed to: "[object Object]" (playing)
-*/
