@@ -28,6 +28,10 @@ RemoteVideoView.prototype = {
 			height: '390',
 			width: '640',
 			videoId: this.v.id,
+			playerVars: {
+				controls: "0",
+				showinfo: "0"
+			},
 			events: {
 				'onReady': this.onPlayerReady,
 				'onStateChange': this.onPlayerStateChange
