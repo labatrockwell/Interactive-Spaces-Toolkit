@@ -5,7 +5,7 @@
     LT.Controller.VideoController = function(playlist, target) {
         this.playlist = playlist;
         this.target = target;
-    }
+    };
     
     /**
     * Intialize video controller
@@ -51,14 +51,14 @@
      *
      * @stub
      */
-    LT.Controller.VideoController.prototype.cuePlaylist = function() {}
+    LT.Controller.VideoController.prototype.cuePlaylist = function() {};
 
     /**
      * Cues up a specific video by url
      *
      * @stub
      */
-    LT.Controller.VideoController.prototype.cueVideoById = function(id) {}
+    LT.Controller.VideoController.prototype.cueVideoById = function(id) {};
     
 
     //--------------------------------------------------- Full Screen Controls
@@ -69,7 +69,7 @@
      */
     LT.Controller.VideoController.prototype.goFullScreen = function() {
         this.target.goFullScreen();
-    }
+    };
 
     
     /**
@@ -78,7 +78,7 @@
      */
     LT.Controller.VideoController.prototype.leaveFullScreen = function() {
         this.target.leaveFullScreen();
-    }
+    };
 
     //------------------------------------------------------ Playback Controls
 
@@ -87,42 +87,42 @@
     *
     * @stub
     */
-    LT.Controller.VideoController.prototype.playVideo = function() {}
+    LT.Controller.VideoController.prototype.playVideo = function() {};
 
     /**
     * Video pause
     *
     * @stub
     */
-    LT.Controller.VideoController.prototype.pauseVideo = function() {}
+    LT.Controller.VideoController.prototype.pauseVideo = function() {};
 
     /**
     * Video play/pause toggle
     *
     * @stub
     */
-    LT.Controller.VideoController.prototype.playOrPauseVideo = function() {}
+    LT.Controller.VideoController.prototype.playOrPauseVideo = function() {};
     
     /**
     * Video stop
     *
     * @stub
     */
-    LT.Controller.VideoController.prototype.stopVideo = function() {}
+    LT.Controller.VideoController.prototype.stopVideo = function() {};
 
     /**
     * Play previous video
     *
     * @stub
     */
-    LT.Controller.VideoController.prototype.previousVideo = function() {}
+    LT.Controller.VideoController.prototype.previousVideo = function() {};
 
     /**
     * Play next video
     *
     * @stub
     */
-    LT.Controller.VideoController.prototype.nextVideo = function() {}
+    LT.Controller.VideoController.prototype.nextVideo = function() {};
     
 
 

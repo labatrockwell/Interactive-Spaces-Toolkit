@@ -8,7 +8,7 @@
         this.title = ""; // title of video
         this.description = ""; // description for video
         this.id = id; // local or remote id for video
-    }
+    };
         
     /**
     * Initialize video model
@@ -17,7 +17,7 @@
     */
     LT.Model.Video.prototype.initialize = function(_) {
         _();
-    }
+    };
 
     /**
     * Sets the video title
@@ -47,7 +47,7 @@
         this.id = id; // local or remote id for playlist
         this.collection = [];
         this.index = 0;
-    }
+    };
 
     LT.Model.Playlist.prototype = {
         
@@ -66,7 +66,7 @@
         * @param {string} video The video to be added to playlist
         */
         addItem: function(video) {
-            console.log("[Playlist] add video", video)
+            console.log("[Playlist] add video", video);
             this.collection.push(video);
         },
 
@@ -131,6 +131,6 @@
             }
             return list;
         }
-    }
+    };
 
 }).call(this);

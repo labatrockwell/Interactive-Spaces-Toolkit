@@ -5,7 +5,7 @@
 
     LT.View.VideoPlayerTarget = function($el) {
         this.$el = $el; // references an element in the DOM
-    }
+    };
 
     /**
     * Initialize video view
@@ -14,6 +14,6 @@
     */
     LT.View.VideoPlayerTarget.prototype.initialize = function(_) {
         _();
-    }
+    };
 
 }).call(this);

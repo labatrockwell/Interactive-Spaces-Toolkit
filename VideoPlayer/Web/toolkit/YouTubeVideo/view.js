@@ -8,7 +8,7 @@
 
     LT.View.YouTubeTarget = function($el, _) {
         LT.View.VideoPlayerTarget.call(this, $el);
-    }
+    };
 
     // inherit from VideoPlayerTarget
     LT.View.YouTubeTarget.prototype = LT.Util.inherit(LT.View.VideoPlayerTarget.prototype);
@@ -67,7 +67,7 @@
                 }
             }
         });
-    }
+    };
 
     /**
     * Finds the saved YouTube Video Player
@@ -76,7 +76,7 @@
     */
     LT.View.YouTubeTarget.prototype.getYouTubePlayer = function() {
         return this.yt_player;
-    }
+    };
 
 
     /**
@@ -88,7 +88,7 @@
         var qs = LT.Util.queryString(url);
         if (qs.v) return qs.v;
 
-    }
+    };
     
     /**
     * Finds the appropriate view and tells it to go full screen
@@ -99,7 +99,7 @@
         this.original_width = this.$el.width();
         this.getYouTubePlayer().setSize($(window).width(), $(window).height());
         this.$el.addClass("full-screen");
-    }
+    };
 
     /**
     * Whichever screen is playing as full screen, let's close that down
@@ -109,7 +109,7 @@
         this.getYouTubePlayer().setSize(this.original_width, this.original_height);
         this.$el.removeClass("full-screen");
 
-    }
+    };
 
 
 }).call(this);

@@ -4,7 +4,7 @@
     //---------------------------------------------------- YouTube Controller
     LT.Controller.YouTubeController = function(playlist, target) {
         LT.Controller.VideoController.call(this, playlist, target);
-    }
+    };
 
     // inherit from VideoController
     LT.Controller.YouTubeController.prototype = LT.Util.inherit(LT.Controller.VideoController.prototype);
@@ -20,7 +20,7 @@
         var video_ids = this.playlist.getIdList();
         console.log("[YouTubeController] Cue videos: ", video_ids);
         this.target.getYouTubePlayer().cuePlaylist(video_ids);
-    }
+    };
 
     /**
     * Cues a video up by YouTube ID
@@ -28,7 +28,7 @@
     */
     LT.Controller.YouTubeController.prototype.cueVideoById = function(id) {
         this.target.getYouTubePlayer().cueVideoById(id, 0, "highres");
-    }
+    };
 
 
     //-------------------------------------------------- Active Video Controls
@@ -39,7 +39,7 @@
     */
     LT.Controller.YouTubeController.prototype.playVideo = function() {
         this.target.getYouTubePlayer().playVideo();
-    }
+    };
 
     /**
     * Pauses video via a YouTube Player 
@@ -47,7 +47,7 @@
     */
     LT.Controller.YouTubeController.prototype.pauseVideo = function() {
         this.target.getYouTubePlayer().pauseVideo();
-    }
+    };
 
     /**
     * Plays or pauses video via a YouTube Player 
@@ -61,7 +61,7 @@
         else {    
             this.playVideo();
         }
-    }
+    };
 
     /**
     * Stops the active video via a YouTube Player 
@@ -69,7 +69,7 @@
     */
     LT.Controller.YouTubeController.prototype.stopVideo = function() {
         this.target.getYouTubePlayer().stopVideo();
-    }
+    };
 
     /**
     * Plays next available video via a YouTube Player 
@@ -77,7 +77,7 @@
     */
     LT.Controller.YouTubeController.prototype.nextVideo = function() {
         this.target.getYouTubePlayer().nextVideo();
-    }
+    };
 
     /**
     * Plays previous video via a YouTube Player 
@@ -85,7 +85,7 @@
     */
     LT.Controller.YouTubeController.prototype.previousVideo = function() {
         this.target.getYouTubePlayer().previousVideo();
-    }
+    };
 
 
     

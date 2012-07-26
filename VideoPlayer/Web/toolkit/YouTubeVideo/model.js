@@ -5,7 +5,7 @@
 
     LT.Model.YouTubeVideo = function(id) {
         LT.Model.Video.call(this, id);
-    }
+    };
 
     // inherit from Video
     LT.Model.YouTubeVideo.prototype = LT.Util.inherit(LT.Model.Video.prototype);
@@ -35,13 +35,13 @@
                 _();
             }
         });
-    }
+    };
 
     //------------------------------------------------- YouTube Playlist Model
 
     LT.Model.YouTubePlaylist = function(id) {
         LT.Model.Playlist.call(this, id);
-    }
+    };
 
     // inherit from Playlist
     LT.Model.YouTubePlaylist.prototype = LT.Util.inherit(LT.Model.Playlist.prototype);
@@ -70,12 +70,11 @@
                 _();
             },
             error: function(err) {
-                console.log(err.reason)
                 console.log("[YouTubePlaylist] error", err);
                 _();
             }
         });
-    }
+    };
 
 
     /**
@@ -86,7 +85,7 @@
     LT.Model.YouTubePlaylist.prototype.getVideoId = function(url) {
         var qs = LT.Util.queryString(url);
         if (qs.v) return qs.v;
-    }
+    };
 
 
 }).call(this);

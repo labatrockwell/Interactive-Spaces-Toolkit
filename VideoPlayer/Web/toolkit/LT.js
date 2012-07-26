@@ -42,7 +42,7 @@
             }
             return vars;
         }
-    }
+    };
 
 
 }).call(this);
