@@ -7,6 +7,7 @@ Repository that holds tools created for prototyping and building interactive spa
 ** How to run the examples ** 
 1. From the terminal navigate to the current directory (where this readme file is saved)
 2. Run python command "python -m SimpleHTTPServer" to start up a webserver from current directory. 
+	a. Alternately you can point MAMP at this directory and start a web server
 3. Open a browser and go to http://localhost:8000/examples 
 4. Then select the example that you want to view from the list of links
 

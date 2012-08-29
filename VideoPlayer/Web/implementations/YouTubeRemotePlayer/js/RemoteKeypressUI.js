@@ -2,7 +2,7 @@ var KeyUI = function( controller ) {
  	BaseUI.call(this, controller);
 
 	$(window).bind("keypress", function(e) {
-		console.log(e.charCode);
+		console.log("[KEYPRESS] Code=" + e.charCode);
 		switch (e.charCode) {
 			case 112:
 				controller.play();
@@ -16,28 +16,28 @@ var KeyUI = function( controller ) {
 				break;
 			case 109:
 			case 49:
-				console.log("8uDuls5TyNE");
+				console.log("[KEYPRESS] 8uDuls5TyNE");
 				controller.load("8uDuls5TyNE");
 				break;
 			case 103:
 			case 50:
-				console.log("8lXdyD2Yzls");
+				console.log("[KEYPRESS] 8lXdyD2Yzls");
 				controller.load("8lXdyD2Yzls");
 				break;
 			case 114:
 			case 51:
-				console.log("oHg5SJYRHA0");
+				console.log("[KEYPRESS] oHg5SJYRHA0");
 				controller.load("oHg5SJYRHA0");
 				break;				
 			case 99:
 			case 52:
-				console.log("8uDuls5TyNE");
+				console.log("[KEYPRESS] 8uDuls5TyNE");
 				controller.load("EwTZ2xpQwpA");
 				break;				
 			case 100:
 			case 53:
-				console.log("8uDuls5TyNE");
-				controller.load("OQSNhk5ICTI");
+				console.log("[KEYPRESS] Video ID: TbiedguhyvM http://youtube.com/TbiedguhyvM");
+				controller.load("TbiedguhyvM");
 				break;				
 			default:
 				break;

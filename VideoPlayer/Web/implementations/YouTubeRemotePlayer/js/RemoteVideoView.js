@@ -42,9 +42,7 @@ RemoteVideoView.prototype = {
 
 	}, 
 	load:function(_model, _params){
-		//if (_params) this.consumeParams(_params);		// Reset default params if sent
-		//console.log("Load Video:");
-		console.log(_model);
+		//console.log("[Remote Video View]", _model);
 		if (_model.videoId){
 			this.v.id = _model.videoId;
 		}
@@ -69,7 +67,7 @@ RemoteVideoView.prototype = {
 	},
 	goFullscreen: function() {
 
-		// hide scroll bar
+		/// Hides the scroll bar
 		$("body").addClass("no-scroll");
 
 		// scale dimensions out to match window
@@ -90,7 +88,7 @@ RemoteVideoView.prototype = {
 	},
 	leaveFullscreen: function() {
 
-		// restore default scroll-bar behavior
+		/// restore default scroll-bar behavior & dimensions
 		$("body").removeClass("no-scroll");
 
 		// restore to original dimensions
