@@ -5,7 +5,6 @@
 ----------------------------------------- */
 
 body {
-
 }
 body.no-scroll {
   overflow: hidden;
@@ -13,9 +12,19 @@ body.no-scroll {
 
 #video-player {
   width: 640px;
-  margin-top: 0px;
+  margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
+}
+
+#video-player.fs {
+  margin-top:0px;
+  position:fixed;
+  z-index:1001;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 #full-screen-backdrop {

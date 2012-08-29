@@ -70,6 +70,9 @@ RemoteVideoView.prototype = {
 		/// Hides the scroll bar
 		$("body").addClass("no-scroll");
 
+		// Add class for position and z-index 
+		$("#video-player").addClass("fs");
+
 		// scale dimensions out to match window
 		var max_width = $(window).width();
 		var max_height = $(window).height();
@@ -91,6 +94,8 @@ RemoteVideoView.prototype = {
 		/// restore default scroll-bar behavior & dimensions
 		$("body").removeClass("no-scroll");
 
+		$("#video-player").removeClass("fs");
+		
 		// restore to original dimensions
 		this.player.setSize(this.owidth, this.oheight);
 		
