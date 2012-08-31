@@ -1,8 +1,16 @@
 (function() {
+    /**
+        @namespace LT.Model
+    */
     var LT = namespace("com.rockwellgroup.lab.toolkit");
     
-    //---------------------------------------------------- YouTube Video Model
-
+    /**
+        Creates a data model for a YouTubeVideo
+        @constructor
+        @param id
+        @augments LT.Model.Video
+        @memberOf LT.Model
+    */ 
     LT.Model.YouTubeVideo = function(id) {
         LT.Model.Video.call(this, id);
     };
@@ -12,10 +20,9 @@
 
 
     /**
-    * Fetches video metadata from YouTube and updates model accordingly 
-    * only needed as a fall-back from interactive spaces, JSON, etc.
-    *
-    * @todo deprecate?
+        Fetches video metadata from YouTube and updates model accordingly 
+        only needed as a fall-back from interactive spaces, JSON, etc.
+        @todo deprecate?
     */
     LT.Model.YouTubeVideo.prototype.fetch = function(_) {
         var self = this;
@@ -37,8 +44,14 @@
         });
     };
 
-    //------------------------------------------------- YouTube Playlist Model
 
+    /**
+        Creates a data model for a YouTubePlaylist
+        @constructor
+        @param id
+        @augments LT.Model.Playlist
+        @memberOf LT.Model
+    */ 
     LT.Model.YouTubePlaylist = function(id) {
         LT.Model.Playlist.call(this, id);
     };

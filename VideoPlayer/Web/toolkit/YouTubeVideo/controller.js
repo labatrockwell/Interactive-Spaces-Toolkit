@@ -1,7 +1,17 @@
 (function() {
+    /**
+        @namespace LT.Controller
+    */
     var LT = namespace("com.rockwellgroup.lab.toolkit");
 
-    //---------------------------------------------------- YouTube Controller
+    /**
+        Creates a new YouTubeController
+        @constructor
+        @param playlist
+        @param {DOM Element} target
+        @augments LT.Controller.VideoController
+        @memberOf LT.Controller
+    */ 
     LT.Controller.YouTubeController = function(playlist, target) {
         LT.Controller.VideoController.call(this, playlist, target);
     };
@@ -13,7 +23,7 @@
     //-------------------------------------------------- Playlist Manipulation
     
     /**
-    * Cues an entire playlist up (our playlist, not directly from YouTube
+    * Cues an entire playlist up (our playlist, not directly from YouTube)
     *
     */
     LT.Controller.YouTubeController.prototype.cuePlaylist = function() {
@@ -24,7 +34,7 @@
 
     /**
     * Cues a video up by YouTube ID
-    *
+    * @param {String} id YouTube Video ID
     */
     LT.Controller.YouTubeController.prototype.cueVideoById = function(id) {
         this.target.getYouTubePlayer().cueVideoById(id, 0, "highres");

@@ -5,3 +5,4 @@ _meta/
 *.mp4
 *.ogg
 .DS_Store
+/jsdoc3/
