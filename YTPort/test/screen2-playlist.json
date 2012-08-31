@@ -1,0 +1,29 @@
+{
+    "id": "screen2",
+    "order": 2,
+    "title": "Brand Building Thought Leaders",
+    "description": "Four videos from marketing and branding thought leaders",
+    "videos": [
+        {
+            "id": "ou_3vc7lSog", 
+            "title": "Under Armour", 
+            "description": "Founder and CEO of Under Armour, Kevin Plank, shares the story of how he started Under Armour and built it into a high-profile global brand. [3:31]"
+        },
+        {
+            "id": "8EEK20NqMMw", 
+            "title": "Ray Croc McD's", 
+            "description": "Excellent movie made for NHD. [9:54]"
+        },
+        {
+            "id": "iNkH4n82Cbc", 
+            "title": "Patagonia", 
+            "description": "The founder of Patagonia explains why businesses giving back to the planet is green marketing. [2:40]"
+            },
+        {
+            "id": "twVYSJvHyYI", 
+            "title": "Nike", 
+            "description": "A history about Nike. [2:12]"
+        }
+
+    ]
+}

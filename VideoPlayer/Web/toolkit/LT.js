@@ -1,5 +1,6 @@
 (function() {
     var LT = namespace("com.rockwellgroup.lab.toolkit");
+    
     /** 
         Lab Toolkit Something: A common set of utility functions and basic setup universal to all projects 
         @name LT

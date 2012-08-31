@@ -1,0 +1,79 @@
+  /* -----------------------------------------
+   Shared Styles
+----------------------------------------- */
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+body {
+  background: #000;
+}
+
+/* -----------------------------------------
+   YouTube Video Players
+----------------------------------------- */
+
+
+#mask {
+  z-index: 1200;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+
+/* 
+* this is assigned to the active full screen video only 
+* removed as soon as the full screen window is closed
+*/
+.full-screen {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1075;
+}
+
+
+
+/* 
+* any content that should layer on top of the full-screen video should go here
+*/
+#modal {
+  display: none;
+}
+
+
+/* -----------------------------------------
+   Test Page
+----------------------------------------- */
+.video-controls {
+    margin-top: 1em !important;
+    text-align: center;
+}
+
+
+.meta-container {height: 120px;}
+
+.status-container {
+  height: 30px;
+  margin-top: 1.5em !important;
+}
+
+/* 
+* close button for testing purposes
+*/
+#modal-close {
+  background: rgba(255,255,255,0.5);
+  text-align: center;
+  padding: 1.5em;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1100;
+}
+
