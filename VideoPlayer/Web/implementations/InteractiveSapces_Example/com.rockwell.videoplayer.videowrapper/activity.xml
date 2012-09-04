@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<activity>
-    <name>IS Wrapper for Video Player</name>
-    <description>
-	  Wraps the Video Player into an app that can communicate via IS.
-    </description>
-    <version>0.0.1</version>
-    <identifyingName>com.rockwell.videoplayer.videowrapper</identifyingName>
-</activity>

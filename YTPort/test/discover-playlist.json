@@ -1,9 +1,0 @@
-{
-    "id": "discover",
-    "order": 0,
-    "title": "Discover",
-    "description": "Text",
-    "videos": [
-        {"id": "vZEChG3UsnI", "title": "YouTube", "description": "YouTube"}
-    ]
-}

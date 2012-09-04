@@ -17,17 +17,29 @@
     LAB Launcher
 */ var LT = LT || {};
 LT.env = {
-    "l": ["localhost","31337","/"], // local development w/o IS
+    "l": ["../toServe/"], // local development w/o IS
     "d": ["localhost","31337","/static/"], // development
     "s": ["lab-server.rockwellgroup.com","31337","/static/"], // staging
     "p": ["ytbl-server.ytbl.corp.google.com","31337","/static/"] // production
 };
 var env_port, env = LT.env["l"]; 
-window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,k,v) { if (k === "e") {env = LT.env[v];} else if (k === "p") {env_port = v;}}); 
-//var cdn = "//" + env[0] + ":" + (env_port || env[1]) + env[2];
-var cdn = "../toServe/";
+
+
+// If it's not local we'll need a more complicated static server path
+if (LT.env != "l") {
+    // Concatinate the static path from querystring params
+    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,k,v) { if (k === "e") {env = LT.env[v];} else if (k === "p") {env_port = v;}}); 
+} else {
+    // If it is Local just use the full path from our config
+    var cdn = LT.env[0];
+}
 
 // include your per-app scripts here
+/**
+    This App uses Head.JS to load scripts
+    http://headjs.com/
+*/
+
 head.js(
     cdn + "js/libs/jquery-1.7.1.min.js",
     cdn + "js/libs/socket.io/socket.io.min.js",
@@ -44,6 +56,16 @@ head.js(
     cdn + "js/apps/YouTubePlayer.js",
     "http://www.youtube.com/iframe_api"
 );
+
+/**
+TODO:
++ Break out connection depencies depending on environment
+    - Local Depenencies (window)
+    - IS Depenencies
+    - NCS Depenencies
+    - Spacebrew Depenencies
+    - ECS Depenencies?
+*/
 
 // IS Dependencies
 
