@@ -1,11 +1,17 @@
 (function() {
+    /**
+        @namespace LT.View
+    */
     var LT = namespace("com.rockwellgroup.lab.toolkit");
     
-    //---------------------------------------------------- YouTube Screen View
-
-    // The YouTube Player leverages YouTube's IFrame API, which enables access
-    // from the widest range of devices via HTML5
-
+    
+    /**
+        The YouTube Player leverages YouTube's IFrame API, which enables access from the widest range of devices via HTML5
+        @constructor
+        @param id
+        @augments LT.View.BaseVideoPlayerTarget
+        @memberOf LT.View
+    */ 
     LT.View.YouTubeTarget = function(screen_id,$el, _) {
         LT.View.BaseVideoPlayerTarget.call(this, screen_id, $el);
     };
@@ -14,8 +20,8 @@
     LT.View.YouTubeTarget.prototype = LT.Util.inherit(LT.View.BaseVideoPlayerTarget.prototype);
 
     /**
-    * Intialize view
-    *
+    * Intializes the view
+    * @param {function} _ Callback function
     */
     LT.View.YouTubeTarget.prototype.initialize = function(_) {
         var self = this;
@@ -72,7 +78,6 @@
 
     /**
     * Finds the saved YouTube Video Player
-    *
     * @return {object} A YouTube Player widget
     */
     LT.View.YouTubeTarget.prototype.getYouTubePlayer = function() {
@@ -82,7 +87,6 @@
 
     /**
     * Finds the YouTube Video URL within a URL
-    *
     * @return {string} A YouTube Video ID
     */
     LT.View.YouTubeTarget.prototype.getVideoId = function(url) {
@@ -92,7 +96,6 @@
     
     /**
     * Finds the appropriate view and tells it to go full screen
-    *
     */
     LT.View.YouTubeTarget.prototype.goFullScreen = function() {
         this.original_height = this.$el.height();
@@ -101,11 +104,19 @@
         this.$el.addClass("full-screen");
     };
 
+    /**
+    * Sends volume message along connection
+    * @param {Int} v Volume level 0-100
+    */
     LT.View.YouTubeTarget.prototype.setVolume = function(v){
         console.log("[VIEW] ", v);
         this.getYouTubePlayer().setVolume(v);
     };
 
+    /**
+    * Retreives volume level over connection
+    * @return {Int} Volume level 0-100
+    */
     LT.View.YouTubeTarget.prototype.getVolume = function(){
         console.log("[VIEW] getVolume ", this.getYouTubePlayer().getVolume() );
         return this.getYouTubePlayer().getVolume();
@@ -113,7 +124,6 @@
 
     /**
     * Whichever screen is playing as full screen, let's close that down
-    *
     */
     LT.View.YouTubeTarget.prototype.leaveFullScreen = function() {
         this.getYouTubePlayer().setSize(this.original_width, this.original_height);

@@ -1,14 +1,11 @@
 $(function() {
-
     var LT = namespace("com.rockwellgroup.lab.toolkit");
 
-    /*
-    * YouTubePlayer Application
-    *
-    * A simple single-video display that loads a playlist 
-    * and sends playback status over the network via IS
-    *
-    */
+    /**
+        A simple single-video display that loads a playlist and sends playback status over the network via IS
+        @name YouTubePlayer
+        @constructor
+    */ 
     var YouTubePlayer = function() {
         var qs = LT.Util.queryString(window.location.href); // query string
         var CONNECTION_TYPE = qs._c || "NONE";  // choose between IS or NCS via _c query string (mostly for debug)
@@ -17,8 +14,11 @@ $(function() {
         var app = {
             state: 0, // hidden or visible
 
-            // prepares the application to run
+            /**
+            * @function
+            */
             initialize: function($el) {
+                
                 var self = this;
                 console.log(LOG_NARRATE, "[YouTubePlayer] Launching app...");
                     // bind the app to a specific HTML element

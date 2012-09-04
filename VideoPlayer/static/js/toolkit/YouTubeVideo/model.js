@@ -1,8 +1,16 @@
 (function() {
+    /**
+        @namespace LT.Model
+    */
     var LT = namespace("com.rockwellgroup.lab.toolkit");
     
-    //---------------------------------------------------- YouTube Video Model
-
+    /**
+        Creates a data model for a YouTubeVideo
+        @constructor
+        @param id
+        @augments LT.Model.Video
+        @memberOf LT.Model
+    */ 
     LT.Model.YouTubeVideo = function(id) {
         LT.Model.BaseVideo.call(this, id);
     };
@@ -44,8 +52,14 @@
         });
     };
 
-    //------------------------------------------------- YouTube Playlist Model
 
+    /**
+        Creates a data model for a YouTubePlaylist
+        @constructor
+        @param id
+        @augments LT.Model.Playlist
+        @memberOf LT.Model
+    */ 
     LT.Model.YouTubePlaylist = function(id) {
         LT.Model.BasePlaylist.call(this, id);
 
@@ -94,6 +108,10 @@
         }
     }
 
+    /**
+    * Intialize model with starting content
+    *
+    */
     LT.Model.YouTubePlaylist.prototype.initialize = function(_, $data) {
         console.log(LOG_NARRATE,"[YT Playlist] Initialize", this, $data);
 

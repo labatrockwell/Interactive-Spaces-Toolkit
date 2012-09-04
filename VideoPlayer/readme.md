@@ -1,11 +1,11 @@
-You'll need to run the following
-Console Commands to see anything:
+Usefull functions to call from your app
 -------------------------------------
-app.show()
-app.controller.loadAllVideos()
-app.controller.playOrPauseVideo()
-app.controller.nextVideo()
-app.controller.previousVideo()
+app.hide();
+app.show();
+app.controller.playOrPauseVideo();
+app.controller.nextVideo();
+app.controller.previousVideo();
+app.controller.loadSingleVideo("z_AbfPXTKms");
 
 
 Next Steps:

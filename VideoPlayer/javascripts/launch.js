@@ -17,7 +17,7 @@
     LAB Launcher
 */ var LT = LT || {};
 LT.env = {
-    "l": ["../", "toServe/"], // local development w/o IS
+    "l": ["../", "static/"], // local development w/o IS
     "d": ["//", "localhost","31337","/static/"], // development
     "s": ["//", "lab-server.rockwellgroup.com","31337","/static/"], // staging
     "p": ["//", "ytbl-server.ytbl.corp.google.com","31337","/static/"] // production
