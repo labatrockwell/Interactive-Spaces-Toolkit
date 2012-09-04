@@ -11,7 +11,7 @@ $(function() {
     */
     var YouTubePlayer = function() {
         var qs = LT.Util.queryString(window.location.href); // query string
-        var CONNECTION_TYPE = qs._c || "IS";  // choose between IS or NCS via _c query string (mostly for debug)
+        var CONNECTION_TYPE = qs._c || "NONE";  // choose between IS or NCS via _c query string (mostly for debug)
         var transTime = qs.t_time || 3000;
 
         var app = {
@@ -46,6 +46,10 @@ $(function() {
                     {"key":"playlistLoaded", "playlist": app.model}
                 );
 
+                    // Show the player div
+                app.show();
+                    // Load and play all videos
+                app.controller.loadAllVideos();
 
                     // listen for events
                 $(document).bind("videoLoaded", function(e, data) {
@@ -138,28 +142,35 @@ $(function() {
                 $("#youtube-player").fadeOut();
             },
                 // prepares YouTubeController
-            initializeController: function(_) {                
+            initializeController: function(_) {
                 this.controller = new LT.Controller.YouTubeController(this.model, this.view);
                 this.controller.initialize(function() {
+                    console.log("INIT CONTROLLER!");
                         // now bring the player full-screen right away
                     this.controller.goFullScreen();
-                    //this.controller.setVolume(50);
+                    this.controller.setVolume(50);
 
+                    // Network connection method not needed for this example
                         // let's get this connection ready
                     this.initializeConnection(_);
+
+                    // If Network call is needed the onReady call must go in the Network success method
+                    this.onReady();
+
                 }.bind(this));
             },
                 // prepares connection for interactivity messaging
+                /**
+                Connection Code is not neede for YT base app so has been removed.
+                */
+
             initializeConnection: function(_) {
                     // setup connection parameters
                 var params = {
                     serverURL: window.location.hostname,
                     appName:"YouTubePlayer"
                 }
-                    // support local / NCS testing
-                if (CONNECTION_TYPE == "NCS") {
-                    params.serverPort = 8082;
-                }
+                
                     // create connection object
                 this.connection = LT.Network.buildConnection(CONNECTION_TYPE, params);
                     // bind messages

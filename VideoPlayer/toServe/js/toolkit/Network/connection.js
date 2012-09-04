@@ -26,9 +26,37 @@
 				return connect.call(_conn, params.serverURL, params.serverPort, _);
 			}
 		}
+
+		else if (connType == "NONE") {
+			window._conn = {};
+
+			var connect = _conn.connect;
+
+			/**
+				Dummy Network Connection Functions are good for logging and testing
+			*/
+			_conn.onMessage = function(route, data) {
+				console.log(LOG_INFO, "[No Connection] GET -->", route, data);
+			};
+
+			_conn.sendMessage = function(route, data) {
+				console.log(LOG_INFO, "[No Connection] SEND -->", route, data);
+			};
+
+			_conn.onConnect = function() {
+				console.log(LOG_INFO, "[No Connection] onConnect");
+			};
+
+			_conn.connect = function(_) {
+				_conn.onConnect(_);
+				//return connect.call(_conn, params.serverURL, params.serverPort);
+			}
+
+		}
+
 		else if (connType == "ECS") {
 			// @todos : Update ECS version
-		}	
+		}
 		return _conn;
 	}
 }).call(this);

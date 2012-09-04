@@ -17,22 +17,33 @@
     LAB Launcher
 */ var LT = LT || {};
 LT.env = {
-    "l": ["../toServe/"], // local development w/o IS
-    "d": ["localhost","31337","/static/"], // development
-    "s": ["lab-server.rockwellgroup.com","31337","/static/"], // staging
-    "p": ["ytbl-server.ytbl.corp.google.com","31337","/static/"] // production
+    "l": ["../", "toServe/"], // local development w/o IS
+    "d": ["//", "localhost","31337","/static/"], // development
+    "s": ["//", "lab-server.rockwellgroup.com","31337","/static/"], // staging
+    "p": ["//", "ytbl-server.ytbl.corp.google.com","31337","/static/"] // production
 };
-var env_port, env = LT.env["l"]; 
+var env_port, env = LT.env["l"];
 
+// Parse URL for some variables
+window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,k,v) { if (k === "e") {env = LT.env[v];} else if (k === "p") {env_port = v;}}); 
 
-// If it's not local we'll need a more complicated static server path
-if (LT.env != "l") {
-    // Concatinate the static path from querystring params
-    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,k,v) { if (k === "e") {env = LT.env[v];} else if (k === "p") {env_port = v;}}); 
+/**
+    CDN or static server can be local or hosted on a different server
+    Path options to static server are changed in launch.js. A path option is selected
+    by a variable in the querystring e=l will be local e=p will be production.
+
+    By default statis servers will use the same port as the app. This can be changed in the
+    query string (eg. port=1000)
+*/
+
+if (env[0] != "../" && env[0] != "/"){
+    // If the CDN is not local then assemble a path complete with port num
+    var cdn = env[0] + env[1] + ":" + (env_port || env[2]) + env[3];
 } else {
     // If it is Local just use the full path from our config
-    var cdn = LT.env[0];
+    var cdn = env[0] + env[1];
 }
+
 
 // include your per-app scripts here
 /**
