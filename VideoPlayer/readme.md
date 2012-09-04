@@ -12,3 +12,4 @@ Next Steps:
 Add something to init to auto show or hide the app
 Add something to init to auto loadVideos
 Add something toggle to loadAllVideos that autoplays
+Switch from Head.js to Require.js
