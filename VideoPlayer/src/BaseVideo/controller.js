@@ -26,25 +26,28 @@
         // dispatch events
         function onVideoPlaying(e, data) {
 
-            // sets active playlist item
-            self.playlist.setItemIndex(data.video_id);
+            // only for playlists :(
+            try {                    
+                // sets active playlist item
+                self.playlist.setItemIndex(data.video_id);
 
-            // trigger appropriate title and description change events
-            var active_video = self.playlist.getItemActive();
-            $(document).trigger("videoTitleChanged", active_video.title);
-            $(document).trigger("videoDescriptionChanged", active_video.description);
+                // trigger appropriate title and description change events
+                var active_video = self.playlist.getItemActive();
+                $(document).trigger("videoTitleChanged", active_video.title);
+                $(document).trigger("videoDescriptionChanged", active_video.description);
 
-            if (self.playlist.getItemIndex() == self.playlist.getItemIndexLast()) {
-                console.log(LOG_NARRATE, "[BaseVideo] Playlist ends after this one", data);
-                // @todo remove this binding after complete
-                var binding = $(document).bind("videoEnded", function() {
-                     self.clearVideo();
-                     if (typeof(self.onPlaylistEnd) == "function") {
-                         self.onPlaylistEnd();
-                         self.onPlaylistEnd = null;                        
-                     }
-                });
-            }
+                if (self.playlist.getItemIndex() == self.playlist.getItemIndexLast()) {
+                    console.log(LOG_NARRATE, "[BaseVideo] Playlist ends after this one", data);
+                    // @todo remove this binding after complete
+                    var binding = $(document).bind("videoEnded", function() {
+                         self.clearVideo();
+                         if (typeof(self.onPlaylistEnd) == "function") {
+                             self.onPlaylistEnd();
+                             self.onPlaylistEnd = null;                        
+                         }
+                    });
+                }
+            } catch(e){}
         }
 
         function onVideoEnded(e, data) {

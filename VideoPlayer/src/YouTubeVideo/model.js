@@ -18,6 +18,26 @@
     // inherit from Video
     LT.Model.YouTubeVideo.prototype = LT.Util.inherit(LT.Model.BaseVideo.prototype);
 
+    /**
+    * Intialize model with starting content
+    * @todo Add $data case...
+    */
+    LT.Model.YouTubeVideo.prototype.initialize = function(_, $data) {
+        if ($data !== undefined){
+            this.setTitle($data.entry.title.$t);
+            this.setDescription($data.entry.content.$t);
+            if (typeof(_) === "function") {
+                _();   
+            }
+        } else if ( this.id ){
+            console.log("fetch")
+            this.fetch(_);            
+        } else {
+            if (typeof(_) === "function") {
+                _();   
+            }
+        }
+    };
 
     /**
     * Fetches video metadata from YouTube and updates model accordingly 

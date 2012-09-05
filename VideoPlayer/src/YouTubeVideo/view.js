@@ -22,14 +22,21 @@
     /**
     * Intializes the view
     * @param {function} _ Callback function
+    * @param {Object} params (optional) Object mirroring YT Player options
     */
-    LT.View.YouTubeTarget.prototype.initialize = function(_) {
+    LT.View.YouTubeTarget.prototype.initialize = function(_, params) {
         var self = this;
+        var options = (params !== undefined ? params : {});
+        var showControls = params.controls !== undefined ? params.controls : 0;
+        var showInfo = params.showinfo !== undefined ? params.showinfo : 0;
+        var relatedVideos = params.rel !== undefined ? params.rel : 0;
+        var showCC = params.cc_load_policy !== undefined ? params.cc_load_policy : 0;
 
         // create a placeholder inside element
         self.id = "c" + LT.View.CID++;
 
         self.$el.html($("<div/>").prop("id", this.id));
+        console.log(YT.Player)
 
 
         // create a YouTube Player widget
@@ -37,10 +44,11 @@
             height: self.$el.height(),
             width: self.$el.width(),
             playerVars: {
-                controls: 0, // hides bottom bar
-                showinfo: 0, // hides top bar
-                rel: 0, // hides suggested videos at end of playback
-                iv_load_policy: 3 // hides annotations
+                controls: showControls, // shows/hides bottom bar
+                showinfo: showInfo, // shows/hides top bar
+                rel: relatedVideos, // shows/hides suggested videos at end of playback
+                iv_load_policy: 3, // hides annotations
+                cc_load_policy: showCC // shows/hides closed captioning
             },
             events: {
                 onReady: _, // return as callback when player is ready
