@@ -13,34 +13,16 @@ import sys
 import re
 
 COMMON_FILES = [
-'LabBase.js',
-'Utils.js',
-'EventDispatcher.js',
-'TouchGestureHandler.js',
-'agents/Agent.js',
-'agents/Behavior.js',
-'agents/Group.js',
-'app/BaseApp.js',
-'geom/Point.js',
-'geom/Rect.js',
-'sound/AudioContext.js',
-'sound/Player.js',
-'sound/WAPlayer.js',
-'utils/DOMElement.js',
-'utils/WebSocket.js'
+'LT.js',
+'BaseVideo/controller.js',
+'BaseVideo/model.js',
+'BaseVideo/view.js'
 ]
 
-THREE_FILES = [
-'app/ThreeApp.js',
-'three/Camera.js',
-'three/Geometry.js',
-'three/Mesh.js',
-'three/MouseHandler3D.js',
-'three/Object.js',
-'three/ParticleEmitter.js',
-'three/Ray.js',
-'three/Shader.js',
-'three/TouchHandler3D.js'
+YT_FILES = [
+'YouTubeVideo/controller.js',
+'YouTubeVideo/model.js',
+'YouTubeVideo/view.js'
 ]
 
 def merge(files):
@@ -48,12 +30,10 @@ def merge(files):
 	buffer = []
 
 	for filename in files:
-		with open(os.path.join('../src', 'lab', filename), 'r') as f:
+		with open(os.path.join('../src', '', filename), 'r') as f:
 			buffer.append(f.read())
 
 	joined = "".join(buffer)
-	#remove LAB.require (but not the function LAB.require)
-	joined = re.sub(r"LAB.require\(.*\);","",joined)
 
 	return joined
 
@@ -89,7 +69,7 @@ def compress(text, fname_externs):
 
 def addHeader(text, endFilename):
 
-	return ("// %s - http://github.com/labatrockwell/LAB_JS_Framework\n" % endFilename) + text
+	return ("// %s - https://github.com/labatrockwell/Interactive-Spaces-Toolkit\n" % endFilename) + text
 
 
 def makeDebug(text):
@@ -119,32 +99,23 @@ def buildLib(files, filename, fname_externs, version):
 
 	output(addHeader(text, filename), folder + filename)
 
-
-def buildIncludes(files, filename):
-
-	template = '\t\t<script src="../src/lab/%s"></script>'
-	text = "\n".join(template % f for f in files)
-
-	output(text, filename + '.js')
-
-
 def parse_args():
 
 	if ap:
 		parser = argparse.ArgumentParser(description='Build and compress Three.js')
-		parser.add_argument('--common', help='Build LAB Framework', action='store_const', const=True)
-		parser.add_argument('--three', help='Build LAB THREE utils', action='store_const', const=True)
+		parser.add_argument('--common', help='Build VideoPlayer basic files', action='store_const', const=True)
+		parser.add_argument('--yt', help='Build YT Player utils', action='store_const', const=True)
 		parser.add_argument('--version', help='Name of version', default='r1')
-		parser.add_argument('--all', help='Build all LAB JS files', action='store_true')
+		parser.add_argument('--all', help='Build all VideoPlayer files', action='store_true')
 
 		args = parser.parse_args()
 
 	else:
 		parser = optparse.OptionParser(description='Build and compress LAB Framework')
-		parser.add_option('--common', dest='common', help='Build LAB Framework', action='store_const', const=True)
-		parser.add_option('--three', dest='three', help='Build LAB THREE utils', action='store_const', const=True)
+		parser.add_option('--common', dest='common', help='Build VideoPlayer basic files', action='store_const', const=True)
+		parser.add_option('--yt', dest='three', help='Build YT Player utils', action='store_const', const=True)
 		parser.add_option('--version', dest='version', help='Name of version',default='r1')
-		parser.add_option('--all', dest='all', help='Build all Three.js versions', action='store_true')
+		parser.add_option('--all', dest='all', help='Build all VideoPlayer files', action='store_true')
 
 		args, remainder = parser.parse_args()
 
@@ -163,15 +134,13 @@ def main(argv=None):
 	version = args.version
 
 	config = [
-	['labjs', 'includes', '', COMMON_FILES, args.common],
-	['labjs_three', 'includes_three', 'externs_extras', THREE_FILES, args.three]
-	#['labjs_tdl', 'includes_dom', 'externs_extras', TDL_FILES, args.tdl]
+	['lab_vidplayer', 'includes', '', COMMON_FILES, args.common],
+	['lab_vidplayer_yt', 'includes_yt', 'externs_extras', YT_FILES, args.three]
 	]
 
 	for fname_lib, fname_inc, fname_externs, files, enabled in config:
 		if enabled or args.all:
 			buildLib(files, fname_lib, fname_externs, version)
-			#buildIncludes(files, fname_inc)
 
 if __name__ == "__main__":
 	main()
