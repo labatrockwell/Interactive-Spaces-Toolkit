@@ -36,7 +36,7 @@
         self.id = "c" + LT.View.CID++;
 
         self.$el.html($("<div/>").prop("id", this.id));
-        console.log(YT.Player)
+        LT.log(YT.Player)
 
 
         // create a YouTube Player widget
@@ -117,7 +117,7 @@
     * @param {Int} v Volume level 0-100
     */
     LT.View.YouTubeTarget.prototype.setVolume = function(v){
-        console.log("[VIEW] ", v);
+        LT.log("[VIEW] ", v);
         this.getYouTubePlayer().setVolume(v);
     };
 
@@ -126,7 +126,7 @@
     * @return {Int} Volume level 0-100
     */
     LT.View.YouTubeTarget.prototype.getVolume = function(){
-        console.log("[VIEW] getVolume ", this.getYouTubePlayer().getVolume() );
+        LT.log("[VIEW] getVolume ", this.getYouTubePlayer().getVolume() );
         return this.getYouTubePlayer().getVolume();
     };
 

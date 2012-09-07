@@ -96,14 +96,14 @@
     };
 
     /**
-        Overide the standard console.log function
-        @class console.log
+        In lieu of standard console.log
+        @class LT.log
         @param {int} debug_level Options [LOG_ERROR, LOG_INFO, LOG_EVENTS, LOG_NARRATE, LOG_ALL]
         @param {String} _callback
         @returns {Array} _callback Callback function, same as param
     */ 
-    var log_fn = console.log;
-    console.log = function() {
+    var log_fn = LT.log;
+    LT.log = function() {
         var debug_level = LT.Util.queryString(window.location.search).debug || 1;
 
         var args = Array.prototype.slice.call(arguments);

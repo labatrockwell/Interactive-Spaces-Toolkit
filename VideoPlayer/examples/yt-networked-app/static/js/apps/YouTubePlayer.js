@@ -20,7 +20,7 @@ $(function() {
             initialize: function($el) {
                 
                 var self = this;
-                console.log(LOG_NARRATE, "[YouTubePlayer] Launching app...");
+                LT.log(LOG_NARRATE, "[YouTubePlayer] Launching app...");
                     // bind the app to a specific HTML element
                 self.$el = $el;
                     // save screen id
@@ -38,7 +38,7 @@ $(function() {
             onReady: function() {
 
                 var app = this;
-                console.log(LOG_NARRATE, "[YouTubePlayer] ------- APP LAUNCHED ------", app);
+                LT.log(LOG_NARRATE, "[YouTubePlayer] ------- APP LAUNCHED ------", app);
 
                     // now that we're ready, let's tell everyone about our playlist
                 app.connection.sendMessage(
@@ -80,25 +80,25 @@ $(function() {
                     data.key = "playlistEnded";
                     //data.commander = inCommand;
                     app.connection.sendMessage("videoMessage", data);
-                    console.log(LOG_NARRATE, data);
+                    LT.log(LOG_NARRATE, data);
                 });
 
             },
 
                 // prepares YouTubePlaylist model
             initializeModel: function(_) {
-                console.log(LOG_NARRATE, "[YouTubePlayer] <model>");
+                LT.log(LOG_NARRATE, "[YouTubePlayer] <model>");
                 
                 if (!playlist_id) this.screen_id = "test";
                 var playlist_id = this.screen_id;
 
                 if (!playlist_id) {
                         // we need to receive a playlist ID from the query string
-                    return console.log(LOG_ERROR, "[YouTubePlayer] Failed to start app, missing playlist ID in URL");
+                    return LT.log(LOG_ERROR, "[YouTubePlayer] Failed to start app, missing playlist ID in URL");
                 }
                 else {
                         // let's make our model based on playlist ID
-                    console.log(LOG_INFO, "[YouTubePlayer] Loading playlist with ID " + playlist_id + "...");
+                    LT.log(LOG_INFO, "[YouTubePlayer] Loading playlist with ID " + playlist_id + "...");
                     app.model = new LT.Model.YouTubePlaylist(playlist_id);
                     this.model.initialize(_);
                 }
@@ -126,7 +126,7 @@ $(function() {
             show: function() {
 
                 if (this.state === 1) return;
-                console.log(LOG_NARRATE, "------------ SHOWING VIDEO PLAYER ------------");
+                LT.log(LOG_NARRATE, "------------ SHOWING VIDEO PLAYER ------------");
                 this.state = 1;
                 $("#youtube-player").fadeIn();
                 $("#mask").fadeOut(transTime);
@@ -135,7 +135,7 @@ $(function() {
                 // hide video interface
             hide: function() {
                 if (this.state === 0) return;
-                console.log(LOG_NARRATE, "------------ HIDING VIDEO PLAYER ------------");
+                LT.log(LOG_NARRATE, "------------ HIDING VIDEO PLAYER ------------");
                 this.controller.stopVideo();
                 this.state = 0;
                 $("#mask").fadeIn(transTime);
@@ -145,7 +145,7 @@ $(function() {
             initializeController: function(_) {
                 this.controller = new LT.Controller.YouTubeController(this.model, this.view);
                 this.controller.initialize(function() {
-                    console.log("INIT CONTROLLER!");
+                    LT.log("INIT CONTROLLER!");
                         // now bring the player full-screen right away
                     this.controller.goFullScreen();
                     this.controller.setVolume(50);
@@ -187,14 +187,14 @@ $(function() {
                 if (data.screen_id == app.screen_id) app.onMessageForMe(route,data)
 
                 if (route == "data"){
-                    console.log(LOG_NARRATE, "[INCOMING DATA]", data);
+                    LT.log(LOG_NARRATE, "[INCOMING DATA]", data);
 
                         // Test the Message's data
                         // if it has good attributes then send it along to model.update
                     if (data.videoArray || data.playlistTitle){
                         this.model.update(data, 
                             function(){
-                                console.log('[YTPlayer] Model:Update() ',app.model);
+                                LT.log('[YTPlayer] Model:Update() ',app.model);
                                 app.connection.sendMessage(
                                     "videoMessage", 
                                     {"key":"playlistLoaded", "playlist": app.model}
@@ -211,7 +211,7 @@ $(function() {
             onMessageForAll: function(route, data) {
 
                 if (data.route == "volume"){
-                    console.log(LOG_NARRATE, "[VOLUME ON MESSAGE]", data, data.data.volume);
+                    LT.log(LOG_NARRATE, "[VOLUME ON MESSAGE]", data, data.data.volume);
                     
                     // if (this.muted != true){
                     //     this.muted = true;
@@ -294,7 +294,7 @@ $(function() {
         //initialize for the video with class of "lt-video" only
         app.initialize($(".lt-video"));
         //app.initializeConnection(
-        //    function(){ console.log("[Connection Done]"); }
+        //    function(){ LT.log("[Connection Done]"); }
         //);
 
         

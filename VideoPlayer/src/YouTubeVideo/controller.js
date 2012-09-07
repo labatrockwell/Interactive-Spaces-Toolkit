@@ -36,7 +36,7 @@
     * @param {String} id YouTube Video ID
     */
     LT.Controller.YouTubeController.prototype.loadPlaylist = function(id_list) {
-        console.log(LOG_NARRATE, "[YouTubeController] Loading up playlist", id_list);
+        LT.log(LOG_NARRATE, "[YouTubeController] Loading up playlist", id_list);
         this.target.getYouTubePlayer().loadPlaylist(id_list, 0, 0, "highres");
     };
 
@@ -44,7 +44,7 @@
     * Broadcasts Volume change along a Connection
     */
     LT.Controller.YouTubeController.prototype.setVolume = function(v) {
-        console.log(LOG_NARRATE, "[VOLUME]2 ", v);
+        LT.log(LOG_NARRATE, "[VOLUME]2 ", v);
         this.target.setVolume(v);
     };
 
@@ -52,7 +52,7 @@
     * Receives Volume change from a Connection
     */
     LT.Controller.YouTubeController.prototype.getVolume = function() {
-        console.log(LOG_NARRATE, "[GET VOLUME]2 ", this.target.getVolume() );
+        LT.log(LOG_NARRATE, "[GET VOLUME]2 ", this.target.getVolume() );
         this.target.getVolume();
     };
 
@@ -60,7 +60,7 @@
     * Starts playing a single video via a YouTube Player (whatever has been loaded)
     */
     LT.Controller.YouTubeController.prototype.playVideo = function() {
-        console.log(LOG_NARRATE, "[YouTubeController] Playing Video");
+        LT.log(LOG_NARRATE, "[YouTubeController] Playing Video");
         this.target.getYouTubePlayer().playVideo();
     };
 

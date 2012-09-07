@@ -30,7 +30,7 @@
                 _();   
             }
         } else if ( this.id ){
-            console.log("fetch")
+            LT.log("fetch")
             this.fetch(_);            
         } else {
             if (typeof(_) === "function") {
@@ -47,7 +47,7 @@
     */
     LT.Model.YouTubeVideo.prototype.fetch = function(_) {
         var self = this;
-        console.log(LOG_NARRATE,"[SINGLE YT Video] Fetch", self);
+        LT.log(LOG_NARRATE,"[SINGLE YT Video] Fetch", self);
 
         // @todo abstract this out to pull either from YouTube or IS Admin
         $.ajax({
@@ -63,7 +63,7 @@
                 }
             },
             error: function(err) {
-                console.log(LOG_ERROR, "[YouTubeVideo] error", err);
+                LT.log(LOG_ERROR, "[YouTubeVideo] error", err);
                 
                 if (typeof(_) === "function") {
                     _();   
@@ -83,7 +83,7 @@
     LT.Model.YouTubePlaylist = function(id) {
         LT.Model.BasePlaylist.call(this, id);
 
-        console.log(LOG_NARRATE,"[YT Video] YouTubePlaylist", this, id);
+        LT.log(LOG_NARRATE,"[YT Video] YouTubePlaylist", this, id);
     };
 
     // inherit from Playlist
@@ -94,16 +94,16 @@
     *
     */
     LT.Model.YouTubePlaylist.prototype.update = function($data, _) {
-        console.log(LOG_NARRATE,"[YT Playlist] UPDATE", $data);
+        LT.log(LOG_NARRATE,"[YT Playlist] UPDATE", $data);
         var self = this;
         
         if ($data){
-            console.log(LOG_NARRATE, "[YT Playlist] Data Update");
+            LT.log(LOG_NARRATE, "[YT Playlist] Data Update");
 
-            //console.log("Init from Admin", $data);
-            //console.log($data.playlistTitle);
-            //console.log($data.videoArray);
-            //console.log(parseInt($data.playlistOrder));
+            //LT.log("Init from Admin", $data);
+            //LT.log($data.playlistTitle);
+            //LT.log($data.videoArray);
+            //LT.log(parseInt($data.playlistOrder));
 
             self.title = $data.playlistTitle;
             //self.description = $data.playlistDescription;
@@ -121,7 +121,7 @@
                 self.collection.push(video);
             }
 
-            console.log(self);
+            LT.log(self);
 
             _();
 
@@ -133,7 +133,7 @@
     *
     */
     LT.Model.YouTubePlaylist.prototype.initialize = function(_, $data) {
-        console.log(LOG_NARRATE,"[YT Playlist] Initialize", this, $data);
+        LT.log(LOG_NARRATE,"[YT Playlist] Initialize", this, $data);
 
         var self = this;
 
@@ -142,12 +142,12 @@
 
     
         if ($data){
-            console.log(LOG_NARRATE, "[YT Playlist] Data Initialize");
+            LT.log(LOG_NARRATE, "[YT Playlist] Data Initialize");
 
-            console.log("Init from Admin", $data);
-            console.log($data.playlistTitle);
-            console.log($data.videoArray);
-            console.log(parseInt($data.playlistOrder));
+            LT.log("Init from Admin", $data);
+            LT.log($data.playlistTitle);
+            LT.log($data.videoArray);
+            LT.log(parseInt($data.playlistOrder));
 
             self.title = $data.playlistTitle;
             self.description = $data.playlistDescription;
@@ -165,13 +165,13 @@
                 self.addItem(video);
             }
 
-            console.log(self);
+            LT.log(self);
 
             _();
 
         } else {
 
-            console.log(LOG_NARRATE, "[YT Playlist] Test Initialize");
+            LT.log(LOG_NARRATE, "[YT Playlist] Test Initialize");
 
             $.ajax({
                 url: "./test/" + self.id + "-playlist.json",
@@ -198,7 +198,7 @@
                     _();
                 },
                 error: function(err) {
-                    console.log(LOG_ERROR, "[YouTubePlaylist] error", err);
+                    LT.log(LOG_ERROR, "[YouTubePlaylist] error", err);
                     _();
                 }
             });
