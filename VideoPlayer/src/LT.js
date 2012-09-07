@@ -102,19 +102,19 @@
         @param {String} _callback
         @returns {Array} _callback Callback function, same as param
     */ 
-    var log_fn = LT.log;
+    var log_fn = console.log;
     LT.log = function() {
-        var debug_level = LT.Util.queryString(window.location.search).debug || 1;
+        if ( !LT.debug_level ) LT.debug_level = LT.Util.queryString(window.location.search).debug || 1;
 
         var args = Array.prototype.slice.call(arguments);
         if (typeof(args[0]) == "number") {
-            if (debug_level && args[0] <= debug_level) {
+            console.log(LT.debug_level);
+            if (LT.debug_level && args[0] <= LT.debug_level) {
                 args = args.slice(1, args.length);
-                log_fn.apply(this, args); 
+                console.log(args); 
             }
-        }
-        else {
-            log_fn.apply(this, args);            
+        } else {
+            console.log(args);            
         }
     }
 
