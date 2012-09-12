@@ -121,8 +121,6 @@
                 self.collection.push(video);
             }
 
-            LT.log(self);
-
             _();
 
         }
@@ -164,8 +162,6 @@
                 video.setThumbnail(item.thumbnail || "http://img.youtube.com/vi/" + item.id + "/hqdefault.jpg");
                 self.addItem(video);
             }
-
-            LT.log(self);
 
             _();
 
