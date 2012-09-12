@@ -31,7 +31,7 @@
         var showInfo = params.showinfo !== undefined ? params.showinfo : 0;
         var relatedVideos = params.rel !== undefined ? params.rel : 0;
         var showCC = params.cc_load_policy !== undefined ? params.cc_load_policy : 0;
-        var modestBranding = params.modestbranding !== undefined ? params.modestbranding : 0;
+        var modestBranding = params.modestbranding !== undefined ? params.modestbranding : 1;
 
         // create a placeholder inside element
         self.id = "c" + LT.View.CID++;
@@ -46,7 +46,7 @@
                 controls: showControls, // shows/hides bottom bar
                 showinfo: showInfo, // shows/hides top bar
                 rel: relatedVideos, // shows/hides suggested videos at end of playback
-                modestbranding: modestBranding, // shows/hides suggested videos at end of playback
+                modestbranding: 1,
                 iv_load_policy: 3, // hides annotations
                 cc_load_policy: showCC // shows/hides closed captioning
             },
