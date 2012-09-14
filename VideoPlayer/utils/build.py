@@ -90,11 +90,15 @@ def buildLib(files, filename, fname_externs, version):
 
 	folder = ''
 
-	filename = filename + '-' + version + '.js'
+	filenameUncompressed = filename + '-' + version + '.js'
+	filename = filename + '-' + version + '.min.js'
 
 	print "=" * 40
 	print "Compiling", filename
 	print "=" * 40
+
+	output(addHeader(text, filename), folder + filenameUncompressed)
+
 	text = compress(text, fname_externs)
 
 	output(addHeader(text, filename), folder + filename)
