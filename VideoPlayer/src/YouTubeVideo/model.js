@@ -30,7 +30,7 @@
                 _();   
             }
         } else if ( this.id ){
-            LT.log("fetch")
+            LT.log(LOG_NARRATE,"fetch")
             this.fetch(_);            
         } else {
             if (typeof(_) === "function") {
@@ -57,6 +57,7 @@
             success: function(rsp) {
                 self.setTitle(rsp.entry.title.$t);
                 self.setDescription(rsp.entry.content.$t);
+                self.setThumbnail(rsp.entry.media$group.media$thumbnail[0].url);
                         
                 if (typeof(_) === "function") {
                     _();   
