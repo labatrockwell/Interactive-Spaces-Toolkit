@@ -109,7 +109,6 @@
 
         var args = Array.prototype.slice.call(arguments);
         if (typeof(args[0]) == "number") {
-            console.log(LT.debug_level);
             if (LT.debug_level && args[0] <= LT.debug_level) {
                 args = args.slice(1, args.length);
                 console.log(args); 
