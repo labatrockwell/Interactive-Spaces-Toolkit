@@ -26,7 +26,7 @@
     */
     LT.View.YouTubeTarget.prototype.initialize = function(_, params) {
         var self = this;
-        var options = (params !== undefined ? params : {});
+        var params = params || {};
         var showControls = params.controls !== undefined ? params.controls : 0;
         var showInfo = params.showinfo !== undefined ? params.showinfo : 0;
         var relatedVideos = params.rel !== undefined ? params.rel : 0;
@@ -113,11 +113,29 @@
     };
 
     /**
+    * Whichever screen is playing as full screen, let's close that down
+    */
+    LT.View.YouTubeTarget.prototype.leaveFullScreen = function() {
+        this.getYouTubePlayer().setSize(this.original_width, this.original_height);
+        this.$el.removeClass("full-screen");
+
+    };
+
+    /**
+    * Resizes video player with new width and height
+    */
+    LT.View.YouTubeTarget.prototype.resize = function(width, height) {
+        //LT.log("[YouTubeVideo] New Size", [width, height]);
+        this.getYouTubePlayer().setSize(width, height);
+    }
+
+
+    /**
     * Sends volume message along connection
     * @param {Int} v Volume level 0-100
     */
     LT.View.YouTubeTarget.prototype.setVolume = function(v){
-        LT.log("[VIEW] ", v);
+        LT.log("[YouTubeVideo] ", v);
         this.getYouTubePlayer().setVolume(v);
     };
 
@@ -126,18 +144,10 @@
     * @return {Int} Volume level 0-100
     */
     LT.View.YouTubeTarget.prototype.getVolume = function(){
-        LT.log("[VIEW] getVolume ", this.getYouTubePlayer().getVolume() );
+        LT.log("[YouTubeVideo] getVolume ", this.getYouTubePlayer().getVolume() );
         return this.getYouTubePlayer().getVolume();
     };
 
-    /**
-    * Whichever screen is playing as full screen, let's close that down
-    */
-    LT.View.YouTubeTarget.prototype.leaveFullScreen = function() {
-        this.getYouTubePlayer().setSize(this.original_width, this.original_height);
-        this.$el.removeClass("full-screen");
-
-    };
 
 
 }).call(this);

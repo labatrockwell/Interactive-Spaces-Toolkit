@@ -84,7 +84,7 @@
     LT.Model.YouTubePlaylist = function(id) {
         LT.Model.BasePlaylist.call(this, id);
 
-        LT.log(LOG_NARRATE,"[YT Video] YouTubePlaylist", this, id);
+        //LT.log(LOG_NARRATE,"[YT Video] YouTubePlaylist", this, id);
     };
 
     // inherit from Playlist
@@ -140,13 +140,7 @@
         //$data = false;
 
     
-        if ($data){
-            LT.log(LOG_NARRATE, "[YT Playlist] Data Initialize");
-
-            LT.log("Init from Admin", $data);
-            LT.log($data.playlistTitle);
-            LT.log($data.videoArray);
-            LT.log(parseInt($data.playlistOrder));
+        if ($data && typeof($data) == "object"){
 
             self.title = $data.playlistTitle;
             self.description = $data.playlistDescription;
@@ -168,7 +162,7 @@
 
         } else {
 
-            LT.log(LOG_NARRATE, "[YT Playlist] Test Initialize");
+            LT.log(LOG_NARRATE, "[YT Playlist] Missing explicit data. Try with test JSON...");
 
             $.ajax({
                 url: "./test/" + self.id + "-playlist.json",
@@ -200,7 +194,6 @@
                 }
             });
 
-        }   
+        } 
     };
-
 }).call(this);

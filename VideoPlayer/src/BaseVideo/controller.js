@@ -37,7 +37,7 @@
                 $(document).trigger("videoDescriptionChanged", active_video.description);
 
                 if (self.playlist.getItemIndex() == self.playlist.getItemIndexLast()) {
-                    console.log(LOG_NARRATE, "[BaseVideo] Playlist ends after this one", data);
+                    LT.log(LOG_NARRATE, "[BaseVideo] Playlist ends after this one", data);
                     // @todo remove this binding after complete
                     var binding = $(document).bind("videoEnded", function() {
                          self.clearVideo();
@@ -76,7 +76,7 @@
      *
      */
     LT.Controller.BaseVideoController.prototype.setVolume = function(v) {
-        console.log("[CONTROLLER]2 ", v, 50);
+        LT.log("[CONTROLLER]2 ", v, 50);
         this.target.setVolume(v);
     };
 
@@ -115,7 +115,7 @@
      */
     LT.Controller.BaseVideoController.prototype.loadFirstVideo = function(_) {
         var video = this.playlist.getItemFirst();
-        console.log(LOG_NARRATE, "[BaseVideoController] Loading first video", video);
+        LT.log(LOG_NARRATE, "[BaseVideoController] Loading first video", video);
         this.loadSingleVideo(video.id, _);
     };
 
@@ -126,7 +126,7 @@
     *
     */
     LT.Controller.BaseVideoController.prototype.loadSingleVideo = function(video_id, _) {
-        console.log(LOG_NARRATE, "[BaseVideoController] Play a single video and stop", video_id);
+        LT.log(LOG_NARRATE, "[BaseVideoController] Play a single video and stop", video_id);
         this.onVideoEnd = _;
         this.onPlaylistEnd = null;
         this.loadVideoById(video_id);
@@ -138,7 +138,7 @@
     *
     */
     LT.Controller.BaseVideoController.prototype.loadAllVideos = function(_) {
-        console.log(LOG_NARRATE, "[BaseVideoController] Play all videos and stop", this.playlist.getIdList());
+        LT.log(LOG_NARRATE, "[BaseVideoController] Play all videos and stop", this.playlist.getIdList());
         this.onPlaylistEnd = _;
         this.onVideoEnd = null;
         this.loadPlaylist(this.playlist.getIdList());

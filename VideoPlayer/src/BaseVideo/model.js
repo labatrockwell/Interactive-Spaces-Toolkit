@@ -95,14 +95,14 @@
         * @param {string} video The video to be added to playlist
         */
         addItem: function(video) {
-            console.log(LOG_INFO, "[Playlist] + ", video);
+            //LT.log(LOG_INFO, "[Playlist] + ", video);
             this.collection.push(video);
         },
 
         setItemIndex: function(video_id) {
             
             if (!video_id) {
-                console.log(LOG_ERROR, "[Playlist] Video is invalid", video_id);
+                LT.log(LOG_ERROR, "[Playlist] Video is invalid", video_id);
                 return;
             }
             
@@ -115,7 +115,7 @@
             }
             
             // check if we have a binding for a video en
-            console.log(LOG_NARRATE, "[Playlist] Updated active video to ", video_id, this.index, this.getItemActive());
+            LT.log(LOG_NARRATE, "[Playlist] Updated active video to ", video_id, this.index, this.getItemActive());
         },
         
         /**

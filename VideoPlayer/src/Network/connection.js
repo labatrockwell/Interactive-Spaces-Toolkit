@@ -2,7 +2,7 @@
 	var LT = namespace("com.rockwellgroup.lab.toolkit");
 
 	LT.Network.buildConnection = function(connType, params) {
-		console.log(LOG_INFO, "[Network] Connection Type: "+connType);
+		LT.log(LOG_INFO, "[Network] Connection Type: "+connType);
 
 		if (connType == "IS") {
 			window._conn = new ISjs.Connection();			
@@ -15,7 +15,7 @@
 			}
 
 			_conn.onMessage(function(route, data) {
-				console.log(LOG_INFO, "[Network] GET -->", route, data);
+				LT.log(LOG_INFO, "[Network] GET -->", route, data);
 			});
 		}
 
@@ -36,15 +36,15 @@
 				Dummy Network Connection Functions are good for logging and testing
 			*/
 			_conn.onMessage = function(route, data) {
-				console.log(LOG_INFO, "[No Connection] GET -->", route, data);
+				LT.log(LOG_INFO, "[No Connection] GET -->", route, data);
 			};
 
 			_conn.sendMessage = function(route, data) {
-				console.log(LOG_INFO, "[No Connection] SEND -->", route, data);
+				LT.log(LOG_INFO, "[No Connection] SEND -->", route, data);
 			};
 
 			_conn.onConnect = function() {
-				console.log(LOG_INFO, "[No Connection] onConnect");
+				LT.log(LOG_INFO, "[No Connection] onConnect");
 			};
 
 			_conn.connect = function(_) {

@@ -68,6 +68,7 @@
     * Advances currently loaded playlist
     */
     LT.Controller.YouTubeController.prototype.nextVideo = function() {
+        LT.log(LOG_NARRATE, "[YouTubeController] Next Video");
         this.target.getYouTubePlayer().nextVideo();
     };
     
@@ -75,6 +76,7 @@
     * Backwards through currently loaded playlist
     */
     LT.Controller.YouTubeController.prototype.previousVideo = function() {
+        LT.log(LOG_NARRATE, "[YouTubeController] Previous Video");
         this.target.getYouTubePlayer().previousVideo();
     };
 
@@ -111,6 +113,22 @@
     LT.Controller.YouTubeController.prototype.clearVideo = function() {
         this.target.getYouTubePlayer().clearVideo();
     };
+
+
+    /**
+    * Gets remaining time on video
+    */
+    LT.Controller.YouTubeController.prototype.getDuration = function() {
+        return this.target.getYouTubePlayer().getDuration;
+    }
+
+
+    /**
+    * Gets player's state
+    */
+    LT.Controller.YouTubeController.prototype.getPlayerState = function() {
+        return this.target.getYouTubePlayer().getPlayerState;
+    }
 
     
 }).call(this);

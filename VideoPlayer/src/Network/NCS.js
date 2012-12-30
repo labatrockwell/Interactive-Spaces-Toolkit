@@ -30,19 +30,19 @@
 
     LT.Network.NCS.prototype.sendMessage = function(route, value) {
         if (!this.socket)  {
-            return console.log(LOG_ERROR, "[Network] Failed to find socket for", this);
+            return LT.log(LOG_ERROR, "[Network] Failed to find socket for", this);
         }
 
         value.app_name = this.app_name || "NCSTest";//@todo see if we can remove this w/o break of NCS
         value.route = route;
-        console.log(LOG_EVENTS, "[Network] <-- SEND ", route, value.key, value);
+        LT.log(LOG_EVENTS, "[Network] <-- SEND ", route, value.key, value);
         return this.socket.send(JSON.stringify(value));
     };
 
     // @todo extend to support other states beyond basic messaging
     LT.Network.NCS.prototype.onWSMessage = function(data){
         data = JSON.parse(data);
-        console.log(LOG_EVENTS, "[Network] GET -->", data.route, data.key, data);
+        LT.log(LOG_EVENTS, "[Network] GET -->", data.route, data.key, data);
         if ( data.route ) {
             for (var i=0; i<this.onMessageHooks.length; i++){
                 this.onMessageHooks[i](data.route, data);
