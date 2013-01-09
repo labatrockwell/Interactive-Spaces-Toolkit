@@ -119,7 +119,7 @@
     * Gets remaining time on video
     */
     LT.Controller.YouTubeController.prototype.getDuration = function() {
-        return this.target.getYouTubePlayer().getDuration;
+        return this.target.getYouTubePlayer().getDuration();
     }
 
 
@@ -127,7 +127,7 @@
     * Gets player's state
     */
     LT.Controller.YouTubeController.prototype.getPlayerState = function() {
-        return this.target.getYouTubePlayer().getPlayerState;
+        return this.target.getYouTubePlayer().getPlayerState();
     }
 
     
